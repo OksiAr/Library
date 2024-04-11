@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="book.png" />
+    <None Remove="bookfurniture.png" />
+    <None Remove="librarybooks.jpg" />
+    <None Remove="probiblioteku.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="book.png" />
+    <Resource Include="bookfurniture.png" />
+    <Resource Include="librarybooks.jpg" />
+    <Resource Include="probiblioteku.jpg" />
+  </ItemGroup>
+
+</Project>
