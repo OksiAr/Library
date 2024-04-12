@@ -43,7 +43,8 @@ namespace Library
 
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            App.isAdmin = false;
+            Navigation.NextPage(new PageComponent("Авторизация", new AuthorizationPage()));
         }
     }
 }
