@@ -22,6 +22,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№"></DataGridTextColumn>
                 <DataGridTextColumn Header="ФИО"></DataGridTextColumn>
+                <DataGridTextColumn Header="Адрес"></DataGridTextColumn>
+                <DataGridTextColumn Header="Телефон"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal">

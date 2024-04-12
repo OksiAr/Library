@@ -23,8 +23,8 @@
                 <DataGridTextColumn Header="№"></DataGridTextColumn>
                 <DataGridTextColumn Header="Наименование"></DataGridTextColumn>
                 <DataGridTextColumn Header="Автор"></DataGridTextColumn>
-                <DataGridTextColumn Header="Год издания"></DataGridTextColumn>
                 <DataGridTextColumn Header="Жанр"></DataGridTextColumn>
+                <DataGridTextColumn Header="Год издания"></DataGridTextColumn>
                 <DataGridTextColumn Header="Кол-во экземпляров"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
