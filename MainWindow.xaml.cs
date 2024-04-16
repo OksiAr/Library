@@ -1,4 +1,5 @@
 ﻿using Library.Components;
+using Library.DataBases;
 using Library.Pages;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace Library
             InitializeComponent();
             Navigation.mainWindow = this;
            Navigation.NextPage(new PageComponent("Авторизация",new AuthorizationPage()));
+          
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)

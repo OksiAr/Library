@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.DataBases;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -14,5 +15,7 @@ namespace Library
     public partial class App : Application
     {
         public static bool isAdmin;
+        public static User AuthUser = new User();
+
     }
 }
