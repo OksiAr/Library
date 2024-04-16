@@ -16,7 +16,7 @@
             </StackPanel>
             <StackPanel Margin="2" HorizontalAlignment="Right" Orientation="Horizontal">
                 <TextBlock>Пароль</TextBlock>
-                <PasswordBox x:Name="PasswordPb" Width="200" Padding="10"></PasswordBox>
+                <PasswordBox Height="35" x:Name="PasswordPb" Width="200" Padding="10"></PasswordBox>
             </StackPanel>
             <Button x:Name="EntryBtn" Click="EntryBtn_Click">Войти</Button>
         </StackPanel>

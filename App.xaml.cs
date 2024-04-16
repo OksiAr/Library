@@ -1,4 +1,4 @@
-﻿using Library.DataBases;
+﻿using Library.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,6 +16,6 @@ namespace Library
     {
         public static bool isAdmin;
         public static User AuthUser = new User();
-
+        public static libraryyContext db = new libraryyContext();
     }
 }

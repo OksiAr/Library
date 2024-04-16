@@ -1,5 +1,5 @@
 ﻿using Library.Components;
-using Library.DataBases;
+using Library.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,16 +29,15 @@ namespace Library.Pages
 
         private void EntryBtn_Click(object sender, RoutedEventArgs e)
         {
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                App.AuthUser = db.Users.FirstOrDefault(x => x.Login == LoginTb.Text && x.Password == PasswordPb.Password);
-            }
-            if(App.AuthUser != null)
+            
+            App.AuthUser = App.db.Users.FirstOrDefault(x => x.Login == LoginTb.Text && x.Password == PasswordPb.Password);
+          
+            if (App.AuthUser != null)
             {
                 if (App.AuthUser.RoleId == 1)
                 {
-                    Navigation.NextPage(new PageComponent("Меню администратора", new AdminMenuPage()));
                     App.isAdmin = true;
+                    Navigation.NextPage(new PageComponent("Меню администратора", new AdminMenuPage()));  
                 }
                
             } 

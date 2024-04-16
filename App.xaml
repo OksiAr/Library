@@ -7,14 +7,19 @@
         <Style TargetType="TextBox">
             <Setter Property="Width" Value="200"></Setter>
             <Setter Property="Padding" Value="10"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="5"></Setter>
-            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="FontSize" Value="13"></Setter>
             <Setter Property="Foreground" Value="Black"></Setter>
         </Style>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Height" Value="35"></Setter>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="FontSize" Value="14"></Setter>
         </Style>
     </Application.Resources>
 </Application>

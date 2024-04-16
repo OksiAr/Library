@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,17 @@ namespace Library.Pages
         public AdminMenuPage()
         {
             InitializeComponent();
+        }
+
+        private void BookListBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Navigation.NextPage(new PageComponent("Книги", new BookListPage()));
+
+        }
+
+        private void ReadersListBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Navigation.NextPage(new PageComponent("Читатели", new ReaderListPage()));
         }
     }
 }

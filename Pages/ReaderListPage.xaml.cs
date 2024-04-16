@@ -23,6 +23,7 @@ namespace Library.Pages
         public ReaderListPage()
         {
             InitializeComponent();
+            ReaderList.ItemsSource = App.db.Readers.ToList();
         }
     }
 }

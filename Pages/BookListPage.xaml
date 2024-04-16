@@ -8,24 +8,24 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BookListPage">
 
-    <Grid>
+    <Grid Background="#FFBA977B" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="73*"/>
-            <RowDefinition Height="9*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="14*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock>Поиск</TextBlock>
             <TextBox x:Name="SearchTb"></TextBox>
         </StackPanel>
-        <DataGrid Margin="5" Grid.Row="1" x:Name="BookList" >
+        <DataGrid Margin="5" Grid.Row="1" x:Name="BookList" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="№"></DataGridTextColumn>
-                <DataGridTextColumn Header="Наименование"></DataGridTextColumn>
-                <DataGridTextColumn Header="Автор"></DataGridTextColumn>
-                <DataGridTextColumn Header="Жанр"></DataGridTextColumn>
-                <DataGridTextColumn Header="Год издания"></DataGridTextColumn>
-                <DataGridTextColumn Header="Кол-во экземпляров"></DataGridTextColumn>
+                <DataGridTextColumn Header="№" Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Автор" Binding="{Binding Author.FullName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Жанр" Binding="{Binding Genre.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Год издания" Binding="{Binding Year}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Кол-во экземпляров" Binding="{Binding CountCopies}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal">

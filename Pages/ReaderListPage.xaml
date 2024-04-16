@@ -8,22 +8,22 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ReaderListPage">
 
-    <Grid>
+    <Grid Background="#FFBA977B" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="73*"/>
-            <RowDefinition Height="9*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="14*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock>Поиск</TextBlock>
             <TextBox x:Name="SearchTb"></TextBox>
         </StackPanel>
-        <DataGrid Margin="5" Grid.Row="1" x:Name="ReaderList" >
+        <DataGrid Margin="5" Grid.Row="1" x:Name="ReaderList" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="№"></DataGridTextColumn>
-                <DataGridTextColumn Header="ФИО"></DataGridTextColumn>
-                <DataGridTextColumn Header="Адрес"></DataGridTextColumn>
-                <DataGridTextColumn Header="Телефон"></DataGridTextColumn>
+                <DataGridTextColumn Header="Номер читательского" Binding="{Binding NumberLibraryCard}"></DataGridTextColumn>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding Lastname}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Адрес" Binding="{Binding Address}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal">

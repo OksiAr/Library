@@ -12,8 +12,8 @@
         <StackPanel Background="#FFBA977B" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button>Выдача книг</Button>
             <Button>Возврат книг</Button>
-            <Button>Книги в библиотеки</Button>
-            <Button>Читатели</Button>
+            <Button x:Name="BookListBtn" Click="BookListBtn_Click">Книги в библиотеки</Button>
+            <Button x:Name="ReadersListBtn" Click="ReadersListBtn_Click">Читатели</Button>
         </StackPanel>
     </Grid>
    
