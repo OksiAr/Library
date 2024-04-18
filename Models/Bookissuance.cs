@@ -11,7 +11,7 @@ namespace Library.Models
         public DateTime DateOfIssue { get; set; }
         public DateTime? DateOfReturn { get; set; }
 
-        public virtual Book Book { get; set; } = null!;
-        public virtual Reader ReaderNumberLibraryCardNavigation { get; set; } = null!;
+        public  Book Book { get; set; } = null!;
+        public  Reader Reader { get; set; } = null!;
     }
 }

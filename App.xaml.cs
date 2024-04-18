@@ -14,7 +14,7 @@ namespace Library
     /// </summary>
     public partial class App : Application
     {
-        public static bool isAdmin;
+        public static bool isAuth;
         public static User AuthUser = new User();
         public static libraryyContext db = new libraryyContext();
     }

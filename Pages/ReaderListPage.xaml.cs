@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Library.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +25,25 @@ namespace Library.Pages
         public ReaderListPage()
         {
             InitializeComponent();
-            ReaderList.ItemsSource = App.db.Readers.ToList();
+            Refresh();
+        
+        }
+        public void Refresh()
+        {
+            IEnumerable<Reader> readers =App.db.Readers.ToList();
+  
+            if (SearchTb.Text.Length > 0)
+            {
+                readers = readers.Where(x =>
+                x.FullName.ToLower().Contains(SearchTb.Text.ToLower()) || x.NumberLibraryCard.ToString().Contains(SearchTb.Text));  
+            }
+           
+            ReaderList.ItemsSource = readers;
+        }
+
+        private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Refresh();
         }
     }
 }

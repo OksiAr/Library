@@ -12,11 +12,11 @@
         <StackPanel Background="#FFBA977B" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Margin="2" HorizontalAlignment="Right" Orientation="Horizontal">
                 <TextBlock>Логин</TextBlock>
-                <TextBox x:Name="LoginTb"></TextBox>
+                <TextBox x:Name="LoginTb" Panel.ZIndex="0"></TextBox>
             </StackPanel>
             <StackPanel Margin="2" HorizontalAlignment="Right" Orientation="Horizontal">
                 <TextBlock>Пароль</TextBlock>
-                <PasswordBox Height="35" x:Name="PasswordPb" Width="200" Padding="10"></PasswordBox>
+                <PasswordBox Height="35" x:Name="PasswordPb" Width="200" Padding="10" Panel.ZIndex="1"></PasswordBox>
             </StackPanel>
             <Button x:Name="EntryBtn" Click="EntryBtn_Click">Войти</Button>
         </StackPanel>

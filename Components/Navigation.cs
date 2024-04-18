@@ -14,14 +14,14 @@ namespace Library.Components
 
         public static void ClearHistory()
         {
-            App.isAdmin = false;
+            App.isAuth = false;
             components.Clear();
         }
         private static void Update(PageComponent pageComponent)
         {
             mainWindow.TitleTb.Text = pageComponent.Title;
             mainWindow.BackBtn.Visibility = components.Count() > 1 ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
-            mainWindow.ExitBtn.Visibility = App.isAdmin ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
+            mainWindow.ExitBtn.Visibility = App.isAuth ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
             mainWindow.MainFrame.Navigate(pageComponent.Page);
         }
         public static void NextPage(PageComponent pageComponent)

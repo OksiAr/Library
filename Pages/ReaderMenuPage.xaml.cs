@@ -1,5 +1,4 @@
 ﻿using Library.Components;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,19 +17,23 @@ using System.Windows.Shapes;
 namespace Library.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для IssuanceAndReturnBookPage.xaml
+    /// Логика взаимодействия для ReaderMenuPage.xaml
     /// </summary>
-    public partial class IssuanceAndReturnBookPage : Page
+    public partial class ReaderMenuPage : Page
     {
-        public IssuanceAndReturnBookPage()
+        public ReaderMenuPage()
         {
             InitializeComponent();
-           IssuanceAndReturnBookList.ItemsSource = App.db.Bookissuances
-               .Include(p => p.Reader)
-               .Include(p => p.Book)
-               .ToList();
-           
         }
-      
+
+        private void BookListBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Navigation.NextPage(new PageComponent("Книги", new BookListPage()));
+        }
+
+        private void BookIssuancetBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

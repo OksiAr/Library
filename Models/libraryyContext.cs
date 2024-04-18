@@ -121,7 +121,7 @@ namespace Library.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("bookIssuance_book");
 
-                entity.HasOne(d => d.ReaderNumberLibraryCardNavigation)
+                entity.HasOne(d => d.Reader)
                     .WithMany(p => p.Bookissuances)
                     .HasForeignKey(d => d.ReaderNumberLibraryCard)
                     .OnDelete(DeleteBehavior.ClientSetNull)

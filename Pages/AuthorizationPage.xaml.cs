@@ -34,12 +34,15 @@ namespace Library.Pages
           
             if (App.AuthUser != null)
             {
+                App.isAuth = true;
                 if (App.AuthUser.RoleId == 1)
-                {
-                    App.isAdmin = true;
-                    Navigation.NextPage(new PageComponent("Меню администратора", new AdminMenuPage()));  
+                { 
+                    Navigation.NextPage(new PageComponent("Меню администратора", new AdminMenuPage()));
                 }
-               
+                else
+                {
+                    Navigation.NextPage(new PageComponent("Меню читателя", new ReaderMenuPage()));
+                } 
             } 
             else
             {

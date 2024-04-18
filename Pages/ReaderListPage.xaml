@@ -16,12 +16,12 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock>Поиск</TextBlock>
-            <TextBox x:Name="SearchTb"></TextBox>
+            <TextBox x:Name="SearchTb" TextChanged="SearchTb_TextChanged"></TextBox>
         </StackPanel>
         <DataGrid Margin="5" Grid.Row="1" x:Name="ReaderList" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер читательского" Binding="{Binding NumberLibraryCard}"></DataGridTextColumn>
-                <DataGridTextColumn Header="ФИО" Binding="{Binding Lastname}"></DataGridTextColumn>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Адрес" Binding="{Binding Address}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"></DataGridTextColumn>
             </DataGrid.Columns>
