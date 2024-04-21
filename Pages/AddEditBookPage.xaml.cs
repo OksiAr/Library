@@ -26,8 +26,10 @@ namespace Library.Pages
         public AddEditBookPage(Book _book)
         {
             InitializeComponent();
-            book = _book;
+             book = _book;
             this.DataContext = book;
+            GenreList.ItemsSource = App.db.Genres.ToList();
+            AuthorList.ItemsSource = App.db.Authors.ToList();   
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)

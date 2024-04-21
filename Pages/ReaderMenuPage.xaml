@@ -9,7 +9,7 @@
       Title="ReaderMenuPage">
 
     <Grid>
-        <StackPanel Background="#FFBA977B" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button x:Name="BookListBtn" Click="BookListBtn_Click">Книги в библиотеки</Button>
             <Button x:Name="BookIssuancetBtn" Click="BookIssuancetBtn_Click" >Взятые киниги</Button>
         </StackPanel>

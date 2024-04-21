@@ -5,24 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="750">
+        Title="MainWindow" Height="500" Width="800" Background="White">
     <Grid>
+        <!--Background="#000096"-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="30*"/>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="170*"/>
-            <RowDefinition Height="25*"/>
+            <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
-        <Image Source="/probiblioteku.jpg" Grid.RowSpan="3" Stretch="Fill"/>
+        <Image Source="/probiblioteku.jpg" Grid.RowSpan="3" Stretch="Fill" Opacity="0.5"/>
         <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock x:Name="TitleTb" Background="#FFBA977B"  FontSize="25">Районная библиотека</TextBlock>
+            <TextBlock x:Name="TitleTb" FontSize="25">Районная библиотека</TextBlock>
             <Button x:Name="ExitBtn" Click="ExitBtn_Click" >Выход</Button>
         </StackPanel>
 
         <Frame NavigationUIVisibility="Hidden" x:Name="MainFrame" Grid.Row="1"/>
 
         <Button x:Name="BackBtn" Click="BackBtn_Click" Grid.Row="2" HorizontalAlignment="Left">Назад</Button>
-
-        <Button x:Name="ForwardBtn" Click="ForwardBtn_Click" Grid.Row="2" HorizontalAlignment="Right">Вперед</Button>
 
     </Grid>
 </Window>

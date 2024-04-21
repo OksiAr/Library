@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ReaderListPage">
 
-    <Grid Background="#FFBA977B" >
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="12*"/>
             <RowDefinition Height="70*"/>
@@ -18,14 +18,46 @@
             <TextBlock>Поиск</TextBlock>
             <TextBox x:Name="SearchTb" TextChanged="SearchTb_TextChanged"></TextBox>
         </StackPanel>
-        <DataGrid Margin="5" Grid.Row="1" x:Name="ReaderList" AutoGenerateColumns="False" CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер читательского" Binding="{Binding NumberLibraryCard}"></DataGridTextColumn>
-                <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Адрес" Binding="{Binding Address}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+    
+        <ListView Grid.Row="1" Margin="5" x:Name="ReaderList" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="LightGray" BorderThickness="2" Margin="3">
+                        <Grid Width="357">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition  Width="2*"/>
+
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0">Читательский №:</TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="0">ФИО:</TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="0">Адрес:</TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="0">Телефон:</TextBlock>
+
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding NumberLibraryCard}"></TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding FullName}"></TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Address}"></TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Phone}"></TextBlock>
+                           
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Button x:Name="AddBtn">Добавить</Button>
             <Button x:Name="EditBtn">Изменить</Button>

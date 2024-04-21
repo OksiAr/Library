@@ -20,7 +20,7 @@ namespace Library.Components
         private static void Update(PageComponent pageComponent)
         {
             mainWindow.TitleTb.Text = pageComponent.Title;
-            mainWindow.BackBtn.Visibility = components.Count() > 1 ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
+            mainWindow.BackBtn.Visibility = components.Count() > 2 ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
             mainWindow.ExitBtn.Visibility = App.isAuth ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
             mainWindow.MainFrame.Navigate(pageComponent.Page);
         }

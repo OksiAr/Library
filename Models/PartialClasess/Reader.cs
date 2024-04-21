@@ -8,6 +8,6 @@ namespace Library.Models
 {
     public partial class Reader
     {
-        public string FullName { get => $"{Lastname}  {Firstname} {Patronymic}"; }
+        public string FullName { get => $"{Lastname} {Firstname} {Patronymic}"; }
     }
 }

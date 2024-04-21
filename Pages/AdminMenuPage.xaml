@@ -7,9 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdminMenuPage">
-
+    <!--Background="#FFBA977B"-->
     <Grid>
-        <StackPanel Background="#FFBA977B" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button x:Name="IssuanceAndReturnBookBtn" Click="IssuanceAndReturnBookBtn_Click">Выдача и возврат книг</Button>
             <Button x:Name="BookListBtn" Click="BookListBtn_Click">Книги в библиотеки</Button>
             <Button x:Name="ReadersListBtn" Click="ReadersListBtn_Click">Читатели</Button>

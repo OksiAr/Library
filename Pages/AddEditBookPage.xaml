@@ -18,10 +18,38 @@
                 <TextBlock>Автор</TextBlock>
                 <TextBox Text="{Binding Author}"></TextBox>
             </StackPanel>
+            <ListView x:Name="AuthorList">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding FullName}"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                 <TextBlock>Жанр</TextBlock>
                 <TextBox Text="{Binding Genre}"></TextBox>
             </StackPanel>
+            <ListView x:Name="GenreList">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                 <TextBlock>Издательство</TextBlock>
                 <TextBox Text="{Binding PublihingHouse}"></TextBox>

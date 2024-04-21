@@ -36,16 +36,12 @@ namespace Library
             Navigation.BackPage();
         }
 
-        private void ForwardBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (MainFrame.CanGoForward)
-                MainFrame.GoForward();
-
-        }
+       
 
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
         {
             App.isAuth = false;
+            Navigation.ClearHistory();  
             Navigation.NextPage(new PageComponent("Авторизация", new AuthorizationPage()));
         }
     }
