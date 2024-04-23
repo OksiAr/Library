@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Library.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddEditBookPage">
+      Title="AddEditBookPage" Loaded="Page_Loaded">
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -16,9 +16,10 @@
             </StackPanel>
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                 <TextBlock>Автор</TextBlock>
-                <TextBox Text="{Binding Author}"></TextBox>
+                <ComboBox x:Name="AuthorCb" SelectedItem="{Binding Author}"></ComboBox>
+                <Button x:Name="AddAuthorBtn" Click="AddAuthorBtn_Click">+</Button>
             </StackPanel>
-            <ListView x:Name="AuthorList">
+            <!--<ListView x:Name="AuthorList">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal" />
@@ -31,12 +32,13 @@
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>-->
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                 <TextBlock>Жанр</TextBlock>
-                <TextBox Text="{Binding Genre}"></TextBox>
+                <ComboBox x:Name="GenreCb" SelectedItem="{Binding Genre}"></ComboBox>
+                <Button x:Name="AddGenreBtn" Click="AddGenreBtn_Click">+</Button>
             </StackPanel>
-            <ListView x:Name="GenreList">
+            <!--<ListView x:Name="GenreList">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal" />
@@ -49,7 +51,7 @@
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>-->
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                 <TextBlock>Издательство</TextBlock>
                 <TextBox Text="{Binding PublihingHouse}"></TextBox>

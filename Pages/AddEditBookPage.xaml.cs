@@ -28,19 +28,40 @@ namespace Library.Pages
             InitializeComponent();
              book = _book;
             this.DataContext = book;
-            GenreList.ItemsSource = App.db.Genres.ToList();
-            AuthorList.ItemsSource = App.db.Authors.ToList();   
+            GenreCb.ItemsSource = App.db.Genres.ToList();
+            GenreCb.DisplayMemberPath = "Name";
+            AuthorCb.ItemsSource = App.db.Authors.ToList();
+            AuthorCb.DisplayMemberPath = "FullName";
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-
-            if(book.Id == 0)
+            book.GenreId = (GenreCb.SelectedItem as Genre).Id;
+            book.AuthorId = (AuthorCb.SelectedItem as Author).Id;
+            if (book.Id == 0)
                 App.db.Books.Add(book);
             
             App.db.SaveChanges();
             MessageBox.Show("Операция выполнена успешно!");
             Navigation.NextPage(new PageComponent("Книги", new BookListPage()));
         }
-    }
+
+        private void AddAuthorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Navigation.NextPage(new PageComponent("Добавление автора", new AddAuthorPage()));
+        }
+
+        private void AddGenreBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Navigation.NextPage(new PageComponent("Добавление жанра", new AddGenrePage()));
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            GenreCb.ItemsSource = App.db.Genres.ToList();
+            GenreCb.DisplayMemberPath = "Name";
+            AuthorCb.ItemsSource = App.db.Authors.ToList();
+            AuthorCb.DisplayMemberPath = "FullName";
+        }
+    } 
 }

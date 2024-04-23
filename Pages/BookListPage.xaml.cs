@@ -55,7 +55,15 @@ namespace Library.Pages
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var selBook = BookList.SelectedItem as Book;
+            if (selBook != null)
+            {
+                
+            }
+            else
+            {
+                MessageBox.Show("Выберете книгу для удаления!");
+            }
         }
         public void Refresh()
         {
