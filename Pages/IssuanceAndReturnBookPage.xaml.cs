@@ -26,13 +26,16 @@ namespace Library.Pages
         public IssuanceAndReturnBookPage()
         {
             InitializeComponent();
-           IssuanceAndReturnBookList.ItemsSource = App.db.Bookissuances
-               .Include(p => p.Reader)
-               .Include(p => p.Book)
-               .ToList();
-           
-        }
+            Refresh();
 
+        }
+        private void Refresh()
+        {
+            IssuanceAndReturnBookList.ItemsSource = App.db.Bookissuances
+                .Include(p => p.Reader)
+                .Include(p => p.Book)
+                .ToList();
+        }
         private void ExtendBtn_Click(object sender, RoutedEventArgs e)
         {
             var select = (sender as Button).DataContext as Bookissuance;
@@ -41,6 +44,12 @@ namespace Library.Pages
 
         private void ReturnBookBtn_Click(object sender, RoutedEventArgs e)
         {
+            var select = (sender as Button).DataContext as Bookissuance;
+            App.db.Bookissuances.Remove(select);
+            var returnBook = App.db.Books.FirstOrDefault(x => x.Id == select.BookId);
+            returnBook.CountCopies += 1;
+            App.db.SaveChanges();
+            Refresh();
 
         }
 
@@ -51,6 +60,11 @@ namespace Library.Pages
                .Include(p => p.Book)
                .ToList();
 
+        }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Navigation.NextPage(new PageComponent("Выдача книги", new IssuanceBookPage()));
         }
     }
 }
