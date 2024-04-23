@@ -45,6 +45,8 @@ namespace Library.Pages
                 DateOfReturn = DateTime.Now.AddDays(30)
             };
             App.db.Bookissuances.Add(bookissuance);
+            var book = App.db.Books.FirstOrDefault(x => x.Id == (BookCb.SelectedItem as Book).Id);
+            book.CountCopies -= 1;    
             App.db.SaveChanges();
             Navigation.BackPage();
         }
