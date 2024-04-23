@@ -32,6 +32,12 @@ namespace Library.Pages
             GenrehCb.ItemsSource = genres;
             GenrehCb.DisplayMemberPath = "Name";
             Refresh();
+            if(App.AuthUser.RoleId != 1)
+            {
+                AddBtn.Visibility = Visibility.Collapsed;
+                EditBtn.Visibility = Visibility.Collapsed;
+                DeleteBtn.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -58,7 +64,13 @@ namespace Library.Pages
             var selBook = BookList.SelectedItem as Book;
             if (selBook != null)
             {
-                
+                MessageBoxResult result = MessageBox.Show($"Вы действительно хотите удалить книгу \"{selBook.Name}\"", "Удаление книги", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    App.db.Books.Remove(selBook);
+                    App.db.SaveChanges();
+                    Refresh();
+                }
             }
             else
             {
@@ -97,5 +109,7 @@ namespace Library.Pages
         {
             Refresh();
         }
+
+      
     }
 }

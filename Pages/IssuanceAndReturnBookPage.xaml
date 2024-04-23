@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Library.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="IssuanceAndReturnBookPage">
+      Title="IssuanceAndReturnBookPage" Loaded="Page_Loaded">
 
     <Grid >
         <Grid.RowDefinitions>
@@ -19,8 +19,8 @@
             <TextBox x:Name="SearchTb"></TextBox>
         </StackPanel>
 
-        <ListView x:Name="IssuanceAndReturnBookList" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-           
+        <ListView x:Name="IssuanceAndReturnBookList" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=5}">
+
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" />
@@ -55,6 +55,12 @@
                             <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Reader.NumberLibraryCard}"></TextBlock>
                             <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding DateOfIssue, StringFormat=dd.MM.yyy}"></TextBlock>
                             <TextBlock Grid.Row="4" Grid.Column="1" Text="{ Binding DateOfReturn,  StringFormat=dd.MM.yyy}"></TextBlock>
+                            <StackPanel Grid.Row="5" Grid.ColumnSpan="2" >
+                                <Button Visibility="{Binding VisibilityBtn}" x:Name="ExtendBtn" Click="ExtendBtn_Click">Продлить</Button>
+                                <Button Visibility="{Binding VisibilityBtn}" x:Name="ReturnBookBtn" Click="ReturnBookBtn_Click">Возврат</Button>
+                            </StackPanel>
+                           
+
                         </Grid>
                     </Border>
                 </DataTemplate>

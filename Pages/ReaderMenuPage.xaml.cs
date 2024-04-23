@@ -33,7 +33,7 @@ namespace Library.Pages
 
         private void BookIssuancetBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Navigation.NextPage(new PageComponent("Взятые книги", new IssuanceAndReturnBookPage()));
         }
     }
 }

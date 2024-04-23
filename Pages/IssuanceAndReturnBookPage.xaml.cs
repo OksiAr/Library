@@ -1,4 +1,5 @@
 ﻿using Library.Components;
+using Library.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,25 @@ namespace Library.Pages
                .ToList();
            
         }
-      
+
+        private void ExtendBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var select = (sender as Button).DataContext as Bookissuance;
+            Navigation.NextPage(new PageComponent("Продление книги", new ExtendBookPage(select)));
+        }
+
+        private void ReturnBookBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            IssuanceAndReturnBookList.ItemsSource = App.db.Bookissuances
+               .Include(p => p.Reader)
+               .Include(p => p.Book)
+               .ToList();
+
+        }
     }
 }
