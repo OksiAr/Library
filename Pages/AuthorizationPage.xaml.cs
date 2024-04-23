@@ -51,5 +51,10 @@ namespace Library.Pages
 
          
         }
+
+        private void RegistrationBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Navigation.NextPage(new PageComponent("Регистрация читателя", new RegistrationPage()));
+        }
     }
 }

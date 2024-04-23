@@ -45,5 +45,20 @@ namespace Library.Pages
         {
             Refresh();
         }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

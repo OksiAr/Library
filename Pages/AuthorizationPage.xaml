@@ -19,6 +19,7 @@
                 <PasswordBox Height="35" x:Name="PasswordPb" Width="200" Padding="10" Panel.ZIndex="1"></PasswordBox>
             </StackPanel>
             <Button x:Name="EntryBtn" Click="EntryBtn_Click">Войти</Button>
+            <Button x:Name="RegistrationBtn" Click="RegistrationBtn_Click">Регистрация</Button>
         </StackPanel>
     </Grid>
 </Page>

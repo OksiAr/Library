@@ -59,9 +59,9 @@
         </ListView>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button x:Name="AddBtn">Добавить</Button>
-            <Button x:Name="EditBtn">Изменить</Button>
-            <Button x:Name="DeleteBtn">Удалить</Button>
+            <Button x:Name="AddBtn" Click="AddBtn_Click">Добавить</Button>
+            <Button x:Name="EditBtn" Click="EditBtn_Click">Изменить</Button>
+            <Button x:Name="DeleteBtn" Click="DeleteBtn_Click">Удалить</Button>
         </StackPanel>
     </Grid>
 </Page>
