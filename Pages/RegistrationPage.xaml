@@ -16,15 +16,15 @@
                 <StackPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                         <TextBlock>Фамилия</TextBlock>
-                        <TextBox x:Name="LastNameTb"></TextBox>
+                        <TextBox x:Name="LastNameTb" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                         <TextBlock>Имя</TextBlock>
-                        <TextBox x:Name="FirsNameTb"></TextBox>
+                        <TextBox x:Name="FirsNameTb" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                         <TextBlock>Отчество</TextBlock>
-                        <TextBox x:Name="PatronymicTb"></TextBox>
+                        <TextBox x:Name="PatronymicTb" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                         <TextBlock>Адрес</TextBlock>
@@ -32,7 +32,7 @@
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                         <TextBlock>Телефон</TextBlock>
-                        <TextBox x:Name="PhoneTb"></TextBox>
+                        <TextBox x:Name="PhoneTb" PreviewTextInput="TextBoxNumber_PreviewTextInput"></TextBox>
                     </StackPanel>
                 </StackPanel>
    

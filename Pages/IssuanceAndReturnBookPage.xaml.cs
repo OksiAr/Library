@@ -31,10 +31,22 @@ namespace Library.Pages
         }
         private void Refresh()
         {
-            IssuanceAndReturnBookList.ItemsSource = App.db.Bookissuances
-                .Include(p => p.Reader)
-                .Include(p => p.Book)
-                .ToList();
+            if(App.AuthUser.RoleId == 1)
+            {
+                IssuanceAndReturnBookList.ItemsSource = App.db.Bookissuances
+               .Include(p => p.Reader)
+               .Include(p => p.Book)
+               .ToList();
+            }
+            else
+            {
+                IssuanceAndReturnBookList.ItemsSource = App.db.Bookissuances
+               .Include(p => p.Reader)
+               .Include(p => p.Book)
+               .Where(x => x.ReaderNumberLibraryCard == App.AuthUser.ReaderNumberCard)
+               .ToList();
+            }
+           
         }
         private void ExtendBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -55,11 +67,7 @@ namespace Library.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            IssuanceAndReturnBookList.ItemsSource = App.db.Bookissuances
-               .Include(p => p.Reader)
-               .Include(p => p.Book)
-               .ToList();
-
+            Refresh();
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)

@@ -102,6 +102,22 @@ namespace Library.Pages
             MessageBox.Show("Регистрация прошла успешно");
             Navigation.BackPage();
         }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (char.IsDigit(char.Parse(e.Text)))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBoxNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!(char.IsDigit(char.Parse(e.Text))))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using Library.Models;
+﻿using Library.Components;
+using Library.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -48,11 +49,20 @@ namespace Library.Pages
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Navigation.NextPage(new PageComponent("Регистрация читателя", new RegistrationPage()));
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
+            var selReader = ReaderList.SelectedItem as Reader;
+            if (selReader != null)
+            {
+               
+            }
+            else
+            {
+                MessageBox.Show("Выберите чичтателя из списка!");
+            }
 
         }
 
