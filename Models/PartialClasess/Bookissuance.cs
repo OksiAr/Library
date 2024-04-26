@@ -17,7 +17,7 @@ namespace Library.Models
                     return Visibility.Visible;
                 else
                     return Visibility.Collapsed;
-                        
+
             }
         }
     }

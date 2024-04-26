@@ -27,10 +27,10 @@ namespace Library.Pages
             InitializeComponent();
             BookCb.ItemsSource = App.db.Books.ToList();
             BookCb.DisplayMemberPath = "Name";
-           
+
             ReaderCb.ItemsSource = App.db.Readers.ToList();
             ReaderCb.DisplayMemberPath = "FullName";
-           
+
             DateReturnDp.SelectedDate = DateTime.Now.AddDays(30);
             DateIssueDp.SelectedDate = DateTime.Now;
         }
@@ -46,7 +46,7 @@ namespace Library.Pages
             };
             App.db.Bookissuances.Add(bookissuance);
             var book = App.db.Books.FirstOrDefault(x => x.Id == (BookCb.SelectedItem as Book).Id);
-            book.CountCopies -= 1;    
+            book.CountCopies -= 1;
             App.db.SaveChanges();
             Navigation.BackPage();
         }

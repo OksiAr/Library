@@ -29,27 +29,27 @@ namespace Library.Pages
 
         private void EntryBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+
             App.AuthUser = App.db.Users.FirstOrDefault(x => x.Login == LoginTb.Text && x.Password == PasswordPb.Password);
-          
+
             if (App.AuthUser != null)
             {
                 App.isAuth = true;
                 if (App.AuthUser.RoleId == 1)
-                { 
+                {
                     Navigation.NextPage(new PageComponent("Меню администратора", new AdminMenuPage()));
                 }
                 else
                 {
                     Navigation.NextPage(new PageComponent("Меню читателя", new ReaderMenuPage()));
-                } 
-            } 
+                }
+            }
             else
             {
                 MessageBox.Show("Такого пользователя не существует!!!");
             }
 
-         
+
         }
 
         private void RegistrationBtn_Click(object sender, RoutedEventArgs e)

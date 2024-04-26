@@ -26,7 +26,7 @@ namespace Library.Pages
         public AddEditBookPage(Book _book)
         {
             InitializeComponent();
-             book = _book;
+            book = _book;
             this.DataContext = book;
             GenreCb.ItemsSource = App.db.Genres.ToList();
             GenreCb.DisplayMemberPath = "Name";
@@ -40,7 +40,7 @@ namespace Library.Pages
             book.AuthorId = (AuthorCb.SelectedItem as Author).Id;
             if (book.Id == 0)
                 App.db.Books.Add(book);
-            
+
             App.db.SaveChanges();
             MessageBox.Show("Операция выполнена успешно!");
             Navigation.NextPage(new PageComponent("Книги", new BookListPage()));
@@ -63,5 +63,5 @@ namespace Library.Pages
             AuthorCb.ItemsSource = App.db.Authors.ToList();
             AuthorCb.DisplayMemberPath = "FullName";
         }
-    } 
+    }
 }

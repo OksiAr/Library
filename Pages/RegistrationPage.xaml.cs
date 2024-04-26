@@ -29,52 +29,79 @@ namespace Library.Pages
         }
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void RegistrationBtn_Click(object sender, RoutedEventArgs e)
         {
             var hasNumber = new Regex(@"[0-9]+");
             var hasUpperChar = new Regex(@"[A-Z]+");
-            var hasMinimum8Chars = new Regex(@".{8,}");
-            if (hasNumber.IsMatch(PasswordTb.Password))
+            var hasMinimum6Chars = new Regex(@".{6,}");
+            var PhoneRegex = new Regex(@"^(\+7|8|7)\d{10}$");
+
+            if (string.IsNullOrWhiteSpace(LastNameTb.Text)
+                || string.IsNullOrWhiteSpace(FirsNameTb.Text)
+                || string.IsNullOrWhiteSpace(AddressTb.Text)
+                || string.IsNullOrWhiteSpace(LoginTb.Text))
             {
-                if (hasUpperChar.IsMatch(PasswordTb.Password))
-                {
-                    if (hasMinimum8Chars.IsMatch(PasswordTb.Password))
-                    {
-                        if (PasswordTb.Password == PasswordTwoTb.Password)
-                        {
-                            App.db.Users.Add(new User()
-                            {
-                                Login = LoginTb.Text,
-                                Password = PasswordTb.Password,
-                                RoleId = 2
-                            });
-                            App.db.SaveChanges();
-                            MessageBox.Show("Регистрация прошла успешно");
-                            Navigation.BackPage();
-                        }
-                        else
-                        {
-                            ValidPasswordTb.Text = "Пароли не совпадают!";
-                        }
-                    }
-                    else
-                    {
-                        ValidPasswordTb.Text = "Пароль дложен состоять минимум из 8 символов!";
-                    }
-                }
-                else
-                {
-                    ValidPasswordTb.Text = "Пароль дложен содержать заглавную букву!";
-                }
-            }
-            else
-            {
-                ValidPasswordTb.Text = "Пароль дложен содержать число!";
+                ValidTb.Text = "Заполните все поля!";
+                return;
             }
 
+            if (!PhoneRegex.IsMatch(PhoneTb.Text))
+            {
+                ValidTb.Text = "Неверный номер!";
+                return;
+            }
+
+            if (App.db.Users.Any(x => x.Login == LoginTb.Text))
+            {
+                ValidTb.Text = "Логин занят";
+                return;
+            }
+
+            if (!hasNumber.IsMatch(PasswordTb.Password))
+            {
+                ValidTb.Text = "Пароль дложен содержать цифру!";
+                return;
+            }
+            if (!hasUpperChar.IsMatch(PasswordTb.Password))
+            {
+                ValidTb.Text = "Пароль дложен содержать заглавную букву!";
+                return;
+            }
+            if (!hasMinimum6Chars.IsMatch(PasswordTb.Password))
+            {
+                ValidTb.Text = "Пароль дложен состоять минимум из 6 символов!";
+                return;
+            }
+            if (PasswordTb.Password == PasswordTwoTb.Password)
+            {
+                ValidTb.Text = "Пароли не совпадают!";
+                return;
+            }
+
+            ValidTb.Text = "";
+            var reader = App.db.Readers.Add(new Reader()
+            {
+                Lastname = LastNameTb.Text,
+                Firstname = FirsNameTb.Text,
+                Patronymic = PatronymicTb.Text,
+                Address = AddressTb.Text,
+                Phone = PhoneTb.Text
+            });
+            App.db.SaveChanges();
+            App.db.Users.Add(new User()
+            {
+                Login = LoginTb.Text,
+                Password = PasswordTb.Password,
+                ReaderNumberCard = reader.Entity.NumberLibraryCard,
+                RoleId = 2
+            });
+            App.db.SaveChanges();
+            MessageBox.Show("Регистрация прошла успешно");
+            Navigation.BackPage();
         }
     }
 }
+

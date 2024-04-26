@@ -8,6 +8,7 @@ namespace Library.Models
         public Reader()
         {
             Bookissuances = new HashSet<Bookissuance>();
+            Users = new HashSet<User>();
         }
 
         public int NumberLibraryCard { get; set; }
@@ -18,5 +19,6 @@ namespace Library.Models
         public string Phone { get; set; } = null!;
 
         public virtual ICollection<Bookissuance> Bookissuances { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

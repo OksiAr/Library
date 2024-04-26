@@ -28,7 +28,7 @@ namespace Library.Pages
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            App.db.Genres.Add(new Models.Genre() { Name = NameTb.Text});
+            App.db.Genres.Add(new Models.Genre() { Name = NameTb.Text });
             App.db.SaveChanges();
             Navigation.BackPage();
         }

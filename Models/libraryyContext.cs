@@ -99,7 +99,7 @@ namespace Library.Models
 
                 entity.HasIndex(e => e.BookId, "bookIssuance_book_idx");
 
-                entity.HasIndex(e => e.ReaderNumberLibraryCard, "bookIssuance_reader_idx");
+                entity.HasIndex(e => e.ReaderNumberLibraryCard, "bookIssuance_book_idx1");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -184,6 +184,8 @@ namespace Library.Models
             {
                 entity.ToTable("users");
 
+                entity.HasIndex(e => e.ReaderNumberCard, "users_reader_idx");
+
                 entity.HasIndex(e => e.RoleId, "users_roles_idx");
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -196,7 +198,14 @@ namespace Library.Models
                     .HasMaxLength(15)
                     .HasColumnName("password");
 
+                entity.Property(e => e.ReaderNumberCard).HasColumnName("readerNumberCard");
+
                 entity.Property(e => e.RoleId).HasColumnName("roleId");
+
+                entity.HasOne(d => d.ReaderNumberCardNavigation)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.ReaderNumberCard)
+                    .HasConstraintName("users_reader");
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.Users)

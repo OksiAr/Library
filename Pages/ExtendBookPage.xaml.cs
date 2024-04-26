@@ -26,16 +26,16 @@ namespace Library.Pages
         public ExtendBookPage(Bookissuance _bookissuance)
         {
             InitializeComponent();
-            bookissuance = _bookissuance;
-            this.DataContext = bookissuance;
-            NewDateRetirnDp.DisplayDateStart = bookissuance.DateOfReturn;
+            //bookissuance = _bookissuance;
+            //this.DataContext = bookissuance;
+            //NewDateRetirnDp.DisplayDateStart = bookissuance.DateOfReturn;
         }
 
         private void ExtendBtn_Click(object sender, RoutedEventArgs e)
         {
-            bookissuance.DateOfReturn = NewDateRetirnDp.SelectedDate;
-            App.db.SaveChanges();
-            Navigation.BackPage();
+        //    bookissuance.DateOfReturn = NewDateRetirnDp.SelectedDate;
+        //    App.db.SaveChanges();
+        //    Navigation.BackPage();
         }
     }
 }

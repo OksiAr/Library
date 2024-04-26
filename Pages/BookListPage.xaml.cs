@@ -27,76 +27,76 @@ namespace Library.Pages
         public BookListPage()
         {
             InitializeComponent();
-            var genres = App.db.Genres.ToList();
-            genres.Insert(0, new Genre() { Id = 0, Name = "Все книги" });
-            GenrehCb.ItemsSource = genres;
-            GenrehCb.DisplayMemberPath = "Name";
-            Refresh();
-            if(App.AuthUser.RoleId != 1)
-            {
-                AddBtn.Visibility = Visibility.Collapsed;
-                EditBtn.Visibility = Visibility.Collapsed;
-                DeleteBtn.Visibility = Visibility.Collapsed;
-            }
+            //var genres = App.db.Genres.ToList();
+            //genres.Insert(0, new Genre() { Id = 0, Name = "Все книги" });
+            //GenrehCb.ItemsSource = genres;
+            //GenrehCb.DisplayMemberPath = "Name";
+            //Refresh();
+            //if(App.AuthUser.RoleId != 1)
+            //{
+            //    AddBtn.Visibility = Visibility.Collapsed;
+            //    EditBtn.Visibility = Visibility.Collapsed;
+            //    DeleteBtn.Visibility = Visibility.Collapsed;
+            //}
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            Navigation.NextPage(new PageComponent("Добавление книги", new AddEditBookPage(new Book())));
+            //Navigation.NextPage(new PageComponent("Добавление книги", new AddEditBookPage(new Book())));
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            var selBook = BookList.SelectedItem as Book;
-            if(selBook != null)
-            {
-                Navigation.NextPage(new PageComponent("Изменение книги", new AddEditBookPage(selBook)));
-            }
-            else
-            {
-                MessageBox.Show("Выберете книгу для изменения!");
-            }
+            //var selBook = BookList.SelectedItem as Book;
+            //if(selBook != null)
+            //{
+            //    Navigation.NextPage(new PageComponent("Изменение книги", new AddEditBookPage(selBook)));
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Выберете книгу для изменения!");
+            //}
            
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            var selBook = BookList.SelectedItem as Book;
-            if (selBook != null)
-            {
-                MessageBoxResult result = MessageBox.Show($"Вы действительно хотите удалить книгу \"{selBook.Name}\"", "Удаление книги", MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
-                {
-                    App.db.Books.Remove(selBook);
-                    App.db.SaveChanges();
-                    Refresh();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Выберете книгу для удаления!");
-            }
+        //    var selBook = BookList.SelectedItem as Book;
+        //    if (selBook != null)
+        //    {
+        //        MessageBoxResult result = MessageBox.Show($"Вы действительно хотите удалить книгу \"{selBook.Name}\"", "Удаление книги", MessageBoxButton.YesNo);
+        //        if (result == MessageBoxResult.Yes)
+        //        {
+        //            App.db.Books.Remove(selBook);
+        //            App.db.SaveChanges();
+        //            Refresh();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Выберете книгу для удаления!");
+        //    }
         }
         public void Refresh()
         {
-            IEnumerable<Book> books = App.db.Books
-                .Include(b => b.Author)
-                .Include(b => b.Genre)
-                .ToList();
+            //IEnumerable<Book> books = App.db.Books
+            //    .Include(b => b.Author)
+            //    .Include(b => b.Genre)
+            //    .ToList();
           
-            if (SearchTb.Text.Length > 0)
-            {
-                books = books.Where(x =>
-                x.Name.ToLower().Contains(SearchTb.Text.ToLower())
-                || x.Author.FullName.ToLower().Contains(SearchTb.Text.ToLower()));
-            }
+            //if (SearchTb.Text.Length > 0)
+            //{
+            //    books = books.Where(x =>
+            //    x.Name.ToLower().Contains(SearchTb.Text.ToLower())
+            //    || x.Author.FullName.ToLower().Contains(SearchTb.Text.ToLower()));
+            //}
           
-            if (GenrehCb.SelectedIndex > 0)
-            {
-                var selGenre = GenrehCb.SelectedItem as Genre;
-                books = books.Where(x => x.Genre.Name == selGenre.Name);
-            }
-            BookList.ItemsSource = books;
+            //if (GenrehCb.SelectedIndex > 0)
+            //{
+            //    var selGenre = GenrehCb.SelectedItem as Genre;
+            //    books = books.Where(x => x.Genre.Name == selGenre.Name);
+            //}
+            //BookList.ItemsSource = books;
 
         }
         private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)

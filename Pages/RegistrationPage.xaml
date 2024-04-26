@@ -10,33 +10,50 @@
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
-                <TextBlock>Фамилия</TextBlock>
-                <TextBox x:Name="LastNameTb"></TextBox>
-            </StackPanel>
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
-                <TextBlock>Имя</TextBlock>
-                <TextBox x:Name="FirsNameTb"></TextBox>
-            </StackPanel>
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
-                <TextBlock>Отчество</TextBlock>
-                <TextBox x:Name="PatronymicTb"></TextBox>
-            </StackPanel>
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
-                <TextBlock>Логин</TextBlock>
-                <TextBox x:Name="LoginTb"></TextBox>
-            </StackPanel>
-            <TextBlock x:Name="ValidPasswordTb" Foreground="Red"></TextBlock>
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
-                <TextBlock>Пароль</TextBlock>
-                <PasswordBox x:Name="PasswordTb"></PasswordBox>
-            </StackPanel>
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
-                <TextBlock>Повторите пароль</TextBlock>
-                <PasswordBox x:Name="PasswordTwoTb"></PasswordBox>
+            <TextBlock x:Name="ValidTb" Foreground="Red"></TextBlock>
+            <StackPanel  Orientation="Horizontal">
+               
+                <StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
+                        <TextBlock>Фамилия</TextBlock>
+                        <TextBox x:Name="LastNameTb"></TextBox>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
+                        <TextBlock>Имя</TextBlock>
+                        <TextBox x:Name="FirsNameTb"></TextBox>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
+                        <TextBlock>Отчество</TextBlock>
+                        <TextBox x:Name="PatronymicTb"></TextBox>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
+                        <TextBlock>Адрес</TextBlock>
+                        <TextBox x:Name="AddressTb"></TextBox>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
+                        <TextBlock>Телефон</TextBlock>
+                        <TextBox x:Name="PhoneTb"></TextBox>
+                    </StackPanel>
+                </StackPanel>
+   
+                <StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
+                        <TextBlock>Логин</TextBlock>
+                        <TextBox x:Name="LoginTb"></TextBox>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
+                        <TextBlock>Пароль</TextBlock>
+                        <PasswordBox x:Name="PasswordTb"></PasswordBox>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
+                        <TextBlock>Повторите пароль</TextBlock>
+                        <PasswordBox x:Name="PasswordTwoTb"></PasswordBox>
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
             <Button x:Name="RegistrationBtn" Click="RegistrationBtn_Click">Зарегистрироваться</Button>
             <Button x:Name="CancelBtn" Click="CancelBtn_Click">Отмена</Button>
         </StackPanel>
+      
     </Grid>
 </Page>
