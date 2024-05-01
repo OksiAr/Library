@@ -42,7 +42,7 @@
                                 <ColumnDefinition  Width="2*"/>
 
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0">Читательский №:</TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="0">Читательский:</TextBlock>
                             <TextBlock Grid.Row="1" Grid.Column="0">ФИО:</TextBlock>
                             <TextBlock Grid.Row="2" Grid.Column="0">Адрес:</TextBlock>
                             <TextBlock Grid.Row="3" Grid.Column="0">Телефон:</TextBlock>

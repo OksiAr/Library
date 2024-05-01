@@ -29,16 +29,19 @@ namespace Library.Pages
             Refresh();
 
         }
+
+        // метод для обновления списка после выполнения каких либо действий с ним
         public void Refresh()
         {
             IEnumerable<Reader> readers = App.db.Readers.ToList();
-
+            
+            //если что-то ввели в поле для поиска, выполняется выборка по ФИО или номеру читательского
             if (SearchTb.Text.Length > 0)
             {
                 readers = readers.Where(x =>
                 x.FullName.ToLower().Contains(SearchTb.Text.ToLower()) || x.NumberLibraryCard.ToString().Contains(SearchTb.Text));
             }
-
+            //заполнение списка
             ReaderList.ItemsSource = readers;
         }
 

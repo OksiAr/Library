@@ -32,6 +32,7 @@ namespace Library.Pages
             GenrehCb.ItemsSource = genres;
             GenrehCb.DisplayMemberPath = "Name";
             Refresh();
+            //если авторизован не админ скрыть кнопки дабвить, изменить, удалить
             if (App.AuthUser.RoleId != 1)
             {
                 AddBtn.Visibility = Visibility.Collapsed;

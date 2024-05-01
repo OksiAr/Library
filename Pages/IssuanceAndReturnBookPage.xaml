@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock>Поиск</TextBlock>
-            <TextBox x:Name="SearchTb"></TextBox>
+            <TextBox x:Name="SearchTb" TextChanged="SearchTb_TextChanged"></TextBox>
         </StackPanel>
 
         <ListView x:Name="IssuanceAndReturnBookList" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=5}">
@@ -29,9 +29,11 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="LightGray" BorderThickness="2" Margin="5">
+                    <Border BorderBrush="{Binding ColorOverdueDate}" BorderThickness="2" Margin="5">
                         <Grid Width="355">
                             <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
@@ -46,16 +48,21 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Row="0" Grid.Column="0">Книга:</TextBlock>
                             <TextBlock Grid.Row="1" Grid.Column="0">Читатель:</TextBlock>
-                            <TextBlock Grid.Row="2" Grid.Column="0">Читательский №:</TextBlock>
-                            <TextBlock Grid.Row="3" Grid.Column="0">Дата выдачи:</TextBlock>
-                            <TextBlock Grid.Row="4" Grid.Column="0">Дата возврата:</TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="0">Читательский:</TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="0">Телефон:</TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="0">Дата выдачи:</TextBlock>
+                            <TextBlock Grid.Row="5" Grid.Column="0">Дата возврата:</TextBlock>
 
                             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Book.Name}" ></TextBlock>
                             <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Reader.FullName}"></TextBlock>
                             <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Reader.NumberLibraryCard}"></TextBlock>
-                            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding DateOfIssue, StringFormat=dd.MM.yyy}"></TextBlock>
-                            <TextBlock Grid.Row="4" Grid.Column="1" Text="{ Binding DateOfReturn,  StringFormat=dd.MM.yyy}"></TextBlock>
-                            <StackPanel Grid.Row="5" Grid.ColumnSpan="2" >
+                            <TextBlock Grid.Row="3" Grid.Column="1" Text="{ Binding Reader.Phone}"></TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding DateOfIssue, StringFormat=dd.MM.yyy}"></TextBlock>
+
+                            <TextBlock Grid.Row="5" Grid.Column="1" Text="{ Binding DateOfReturn,  StringFormat=dd.MM.yyy}"></TextBlock>
+                            <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="{ Binding OverdueDate}"  Foreground="Red"></TextBlock>
+                         
+                            <StackPanel Grid.Row="7" Grid.ColumnSpan="2" >
                                 <Button Visibility="{Binding VisibilityBtn}" x:Name="ExtendBtn" Click="ExtendBtn_Click">Продлить</Button>
                                 <Button Visibility="{Binding VisibilityBtn}" x:Name="ReturnBookBtn" Click="ReturnBookBtn_Click">Возврат</Button>
                             </StackPanel>

@@ -22,33 +22,62 @@ namespace Library.Pages
     /// </summary>
     public partial class IssuanceBookPage : Page
     {
+       
+        
         public IssuanceBookPage()
         {
             InitializeComponent();
-            BookCb.ItemsSource = App.db.Books.ToList();
+            //заполнение комбобокса книгами из базы(вывод только наименования)
+            BookCb.ItemsSource = App.db.Books.Where(x=> x.CountCopies > 0).ToList();
             BookCb.DisplayMemberPath = "Name";
 
+            //заполнение комбобокса читателями из базы
             ReaderCb.ItemsSource = App.db.Readers.ToList();
             ReaderCb.DisplayMemberPath = "FullName";
 
-            DateReturnDp.SelectedDate = DateTime.Now.AddDays(30);
+            //автоматическое заполнение даты выдачи текущей датой
             DateIssueDp.SelectedDate = DateTime.Now;
+            //автоматическое заполнение даты возврата(текущая дата  + 30 дней)
+            DateReturnDp.SelectedDate = DateTime.Now.AddDays(30);
+          
         }
 
         private void IssueBtn_Click(object sender, RoutedEventArgs e)
         {
-            Bookissuance bookissuance = new Bookissuance()
+            try
             {
-                BookId = (BookCb.SelectedItem as Book).Id,
-                ReaderNumberLibraryCard = (ReaderCb.SelectedItem as Reader).NumberLibraryCard,
-                DateOfIssue = DateTime.Now,
-                DateOfReturn = DateTime.Now.AddDays(30)
-            };
-            App.db.Bookissuances.Add(bookissuance);
-            var book = App.db.Books.FirstOrDefault(x => x.Id == (BookCb.SelectedItem as Book).Id);
-            book.CountCopies -= 1;
-            App.db.SaveChanges();
-            Navigation.BackPage();
+                //проверка заполнены ли все поля
+                if (BookCb.SelectedItem == null
+                    || ReaderCb.SelectedItem == null)
+                {
+                    MessageBox.Show("Заполните все поля!");
+                }
+                else
+                {
+                    //создание новой записи о выданной книге
+                    Bookissuance bookissuance = new Bookissuance()
+                    {
+                        BookId = (BookCb.SelectedItem as Book).Id,
+                        ReaderNumberLibraryCard = (ReaderCb.SelectedItem as Reader).NumberLibraryCard,
+                        DateOfIssue = DateTime.Now,
+                        DateOfReturn = DateTime.Now.AddDays(30)
+                    };
+                    App.db.Bookissuances.Add(bookissuance);
+
+                    //после выдачи -1 копия в наличии библиотеки
+                    var book = App.db.Books.FirstOrDefault(x => x.Id == (BookCb.SelectedItem as Book).Id);
+                    book.CountCopies -= 1;
+                    //сохрание изменений в базу данных
+                    App.db.SaveChanges();
+                    //возврат на предыдущую страницу
+                    Navigation.BackPage();
+                }
+            }
+            catch 
+            {
+                MessageBox.Show("Возникла ошибка");
+            }    
+           
         }
     }
 }

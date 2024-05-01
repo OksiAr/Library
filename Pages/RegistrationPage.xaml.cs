@@ -29,83 +29,94 @@ namespace Library.Pages
         }
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Navigation.BackPage();
         }
 
         private void RegistrationBtn_Click(object sender, RoutedEventArgs e)
         {
-            var hasNumber = new Regex(@"[0-9]+");
-            var hasUpperChar = new Regex(@"[A-Z]+");
-            var hasMinimum6Chars = new Regex(@".{6,}");
-            var PhoneRegex = new Regex(@"^(\+7|8|7)\d{10}$");
+            try
+            {
+                var hasNumber = new Regex(@"[0-9]+");
+                var hasUpperChar = new Regex(@"[A-Z]+");
+                var hasMinimum6Chars = new Regex(@".{6,}");
+                var PhoneRegex = new Regex(@"^(\+7|8|7)\d{10}$");
+                //проверка что поля заполнены
+                if (string.IsNullOrWhiteSpace(LastNameTb.Text)
+                    || string.IsNullOrWhiteSpace(FirsNameTb.Text)
+                    || string.IsNullOrWhiteSpace(AddressTb.Text)
+                    || string.IsNullOrWhiteSpace(LoginTb.Text))
+                {
+                    ValidTb.Text = "Заполните все поля!";
+                    return;
+                }
+                //проверка номера телефона
+                if (!PhoneRegex.IsMatch(PhoneTb.Text))
+                {
+                    ValidTb.Text = "Неверный номер!";
+                    return;
+                }
+                //проверка не занят ли логин
+                if (App.db.Users.Any(x => x.Login == LoginTb.Text))
+                {
+                    ValidTb.Text = "Логин занят";
+                    return;
+                }
+                //проверка пароля 
+                if (!hasNumber.IsMatch(PasswordTb.Password))
+                {
+                    ValidTb.Text = "Пароль дложен содержать цифру!";
+                    return;
+                }
+                if (!hasUpperChar.IsMatch(PasswordTb.Password))
+                {
+                    ValidTb.Text = "Пароль дложен содержать заглавную букву!";
+                    return;
+                }
+                if (!hasMinimum6Chars.IsMatch(PasswordTb.Password))
+                {
+                    ValidTb.Text = "Пароль дложен состоять минимум из 6 символов!";
+                    return;
+                }
+                if (PasswordTb.Password == PasswordTwoTb.Password)
+                {
+                    ValidTb.Text = "Пароли не совпадают!";
+                    return;
+                }
 
-            if (string.IsNullOrWhiteSpace(LastNameTb.Text)
-                || string.IsNullOrWhiteSpace(FirsNameTb.Text)
-                || string.IsNullOrWhiteSpace(AddressTb.Text)
-                || string.IsNullOrWhiteSpace(LoginTb.Text))
-            {
-                ValidTb.Text = "Заполните все поля!";
-                return;
+                ValidTb.Text = "";
+                //добавление нового читателя в базу
+                var reader = App.db.Readers.Add(new Reader()
+                {
+                    Lastname = LastNameTb.Text,
+                    Firstname = FirsNameTb.Text,
+                    Patronymic = PatronymicTb.Text,
+                    Address = AddressTb.Text,
+                    Phone = PhoneTb.Text
+                });
+                App.db.SaveChanges();
+                //добавление нового польхователя системы, к пользователю привязывается чичтатель
+                App.db.Users.Add(new User()
+                {
+                    Login = LoginTb.Text,
+                    Password = PasswordTb.Password,
+                    ReaderNumberCard = reader.Entity.NumberLibraryCard,
+                    RoleId = 2
+                });
+                App.db.SaveChanges();
+                MessageBox.Show("Регистрация прошла успешно");
+                Navigation.BackPage();
             }
-
-            if (!PhoneRegex.IsMatch(PhoneTb.Text))
+            catch
             {
-                ValidTb.Text = "Неверный номер!";
-                return;
+                MessageBox.Show("Возникла ошибка");
             }
-
-            if (App.db.Users.Any(x => x.Login == LoginTb.Text))
-            {
-                ValidTb.Text = "Логин занят";
-                return;
-            }
-
-            if (!hasNumber.IsMatch(PasswordTb.Password))
-            {
-                ValidTb.Text = "Пароль дложен содержать цифру!";
-                return;
-            }
-            if (!hasUpperChar.IsMatch(PasswordTb.Password))
-            {
-                ValidTb.Text = "Пароль дложен содержать заглавную букву!";
-                return;
-            }
-            if (!hasMinimum6Chars.IsMatch(PasswordTb.Password))
-            {
-                ValidTb.Text = "Пароль дложен состоять минимум из 6 символов!";
-                return;
-            }
-            if (PasswordTb.Password == PasswordTwoTb.Password)
-            {
-                ValidTb.Text = "Пароли не совпадают!";
-                return;
-            }
-
-            ValidTb.Text = "";
-            var reader = App.db.Readers.Add(new Reader()
-            {
-                Lastname = LastNameTb.Text,
-                Firstname = FirsNameTb.Text,
-                Patronymic = PatronymicTb.Text,
-                Address = AddressTb.Text,
-                Phone = PhoneTb.Text
-            });
-            App.db.SaveChanges();
-            App.db.Users.Add(new User()
-            {
-                Login = LoginTb.Text,
-                Password = PasswordTb.Password,
-                ReaderNumberCard = reader.Entity.NumberLibraryCard,
-                RoleId = 2
-            });
-            App.db.SaveChanges();
-            MessageBox.Show("Регистрация прошла успешно");
-            Navigation.BackPage();
+          
         }
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (char.IsDigit(char.Parse(e.Text)))
+            //в текстбокс можно вводить только буквы
+            if (char.IsDigit(char.Parse(e.Text)))         
             {
                 e.Handled = true;
             }
@@ -113,6 +124,7 @@ namespace Library.Pages
 
         private void TextBoxNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
+            //в тексибокс можно вводить только цифры
             if (!(char.IsDigit(char.Parse(e.Text))))
             {
                 e.Handled = true;

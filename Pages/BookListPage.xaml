@@ -28,9 +28,10 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="LightGray" BorderThickness="2" Margin="5" >
-                        <Grid Width="350" Height="200">
+                    <Border BorderBrush="LightGray" BorderThickness="2" Margin="5">
+                        <Grid Width="350" Height="200" >
                             <Grid.RowDefinitions>
+                                <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
@@ -42,20 +43,21 @@
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition  Width="2*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Название:"></TextBlock>
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Автор:"></TextBlock>
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Жанр:"></TextBlock>
-                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Издательство:"></TextBlock>
-                            <TextBlock Grid.Row="4" Grid.Column="0" Text="Год:"></TextBlock>
-                            <TextBlock Grid.Row="5" Grid.Column="0" Text="Кол-во копий"></TextBlock>
-
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}"></TextBlock>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Author.FullName}"></TextBlock>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Genre.Name}"></TextBlock>
-                            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding PublihingHouse}"></TextBlock>
-                            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Year}"></TextBlock>
-                            <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding CountCopies}"></TextBlock>
-                    </Grid> 
+                            <TextBlock Foreground="{Binding ColorNoCopiess}" Grid.Row="0" Grid.Column="0" Text="Название:"></TextBlock>
+                            <TextBlock Foreground="{Binding ColorNoCopiess}" Grid.Row="1" Grid.Column="0" Text="Автор:"></TextBlock>
+                            <TextBlock Foreground="{Binding ColorNoCopiess}" Grid.Row="2" Grid.Column="0" Text="Жанр:"></TextBlock>
+                            <TextBlock Foreground="{Binding ColorNoCopiess}" Grid.Row="3" Grid.Column="0" Text="Издательство:"></TextBlock>                                 
+                            <TextBlock Foreground="{Binding ColorNoCopiess}" Grid.Row="4" Grid.Column="0" Text="Год:"></TextBlock>
+                            <TextBlock Foreground="{Binding ColorNoCopiess}" Grid.Row="5" Grid.Column="0" Text="Кол-во копий"></TextBlock>                                 
+                                                                         
+                            <TextBlock Foreground="{Binding ColorNoCopiess}" Grid.Row="0" Grid.Column="1" Text="{Binding Name}"></TextBlock>                                 
+                            <TextBlock Foreground="{Binding ColorNoCopiess}" Grid.Row="1" Grid.Column="1" Text="{Binding Author.FullName}"></TextBlock>             
+                            <TextBlock Foreground="{Binding ColorNoCopiess}" Grid.Row="2" Grid.Column="1" Text="{Binding Genre.Name}"></TextBlock>                  
+                            <TextBlock Foreground="{Binding ColorNoCopiess}" Grid.Row="3" Grid.Column="1" Text="{Binding PublihingHouse}"></TextBlock>              
+                            <TextBlock Foreground="{Binding ColorNoCopiess}" Grid.Row="4" Grid.Column="1" Text="{Binding Year}"></TextBlock>                                 
+                            <TextBlock Foreground="{Binding ColorNoCopiess}" Grid.Row="5" Grid.Column="1" Text="{Binding CountCopies}"></TextBlock>                 
+                            <TextBlock Foreground="Red" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding NoCopies}"></TextBlock>
+                        </Grid> 
                     </Border>
                   
                 </DataTemplate>

@@ -1,4 +1,5 @@
-﻿using Library.Components;
+﻿using Google.Protobuf.Reflection;
+using Library.Components;
 using Library.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -21,32 +22,60 @@ namespace Library.Pages
     /// <summary>
     /// Логика взаимодействия для IssuanceAndReturnBookPage.xaml
     /// </summary>
+
     public partial class IssuanceAndReturnBookPage : Page
     {
+
         public IssuanceAndReturnBookPage()
         {
             InitializeComponent();
             Refresh();
 
         }
+        //метод обновления списка
         private void Refresh()
         {
-            if(App.AuthUser.RoleId == 1)
+            try
             {
-                IssuanceAndReturnBookList.ItemsSource = App.db.Bookissuances
-               .Include(p => p.Reader)
-               .Include(p => p.Book)
-               .ToList();
+                IEnumerable<Bookissuance> bookissuances;
+                //если зашел не админ кнопку добавления скрыть
+                if (App.AuthUser.RoleId != 1)
+                {
+                    AddBtn.Visibility = Visibility.Collapsed;
+                }
+                //если возел админ выводить все записи
+                if (App.AuthUser.RoleId == 1)
+                {
+                    bookissuances = App.db.Bookissuances
+                   .Include(p => p.Reader)
+                   .Include(p => p.Book)
+                   .ToList();
+                }//если вощел читатель выводить только его взятые книги
+                else
+                {
+                    bookissuances = App.db.Bookissuances
+                   .Include(p => p.Reader)
+                   .Include(p => p.Book)
+                   .Where(x => x.ReaderNumberLibraryCard == App.AuthUser.ReaderNumberCard)
+                   .ToList();
+                }
+                //если что-то введено в поле поиск, из списка отбирать или по ФИО, или по номеру читательского, или по наименованию книги
+                if (SearchTb.Text.Length > 0)
+                {
+                    bookissuances = bookissuances.Where(x =>
+                    x.Reader.FullName.ToLower().Contains(SearchTb.Text.ToLower())
+                    || x.Reader.NumberLibraryCard.ToString().Contains(SearchTb.Text)
+                    || x.Book.Name.ToLower().Contains(SearchTb.Text.ToLower()));
+                }
+
+                IssuanceAndReturnBookList.ItemsSource = bookissuances;
+
             }
-            else
+            catch
             {
-                IssuanceAndReturnBookList.ItemsSource = App.db.Bookissuances
-               .Include(p => p.Reader)
-               .Include(p => p.Book)
-               .Where(x => x.ReaderNumberLibraryCard == App.AuthUser.ReaderNumberCard)
-               .ToList();
+                MessageBox.Show("Возникла ошибка");
             }
-           
+
         }
         private void ExtendBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -56,12 +85,22 @@ namespace Library.Pages
 
         private void ReturnBookBtn_Click(object sender, RoutedEventArgs e)
         {
-            var select = (sender as Button).DataContext as Bookissuance;
-            App.db.Bookissuances.Remove(select);
-            var returnBook = App.db.Books.FirstOrDefault(x => x.Id == select.BookId);
-            returnBook.CountCopies += 1;
-            App.db.SaveChanges();
-            Refresh();
+            try
+            {
+                //при возврате запись из базы о выдаче удаляется
+                var select = (sender as Button).DataContext as Bookissuance;
+                App.db.Bookissuances.Remove(select);
+                //после возврата количесво копий данной книги +1
+                var returnBook = App.db.Books.FirstOrDefault(x => x.Id == select.BookId);
+                returnBook.CountCopies += 1;
+                //сохранение изменений в базе
+                App.db.SaveChanges();
+                Refresh();
+            }
+            catch
+            {
+                MessageBox.Show("Возникла ошибка");
+            }
 
         }
 
@@ -73,6 +112,11 @@ namespace Library.Pages
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
             Navigation.NextPage(new PageComponent("Выдача книги", new IssuanceBookPage()));
+        }
+
+        private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Refresh();
         }
     }
 }

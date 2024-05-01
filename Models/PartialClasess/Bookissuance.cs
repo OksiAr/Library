@@ -20,5 +20,31 @@ namespace Library.Models
 
             }
         }
+        public string OverdueDate
+        {
+            get
+            {
+                if(DateOfReturn < DateTime.Now)
+                {
+                    return "Возврат просрочен";
+                }
+                else
+                {
+                    return "";
+                }
+
+            }
+        }
+        public string ColorOverdueDate
+        {
+            get
+            {
+                if (DateOfReturn < DateTime.Now)
+                    return "#ff0000";
+                else
+                    return "#d3d3d3";
+            }
+        }
+
     }
 }
