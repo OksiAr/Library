@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Library.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="RegistrationPage">
+      Title="Регистрация">
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -16,30 +16,30 @@
                 <StackPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                         <TextBlock>Фамилия</TextBlock>
-                        <TextBox x:Name="LastNameTb" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
+                        <TextBox Text="{Binding Reader.Lastname}" x:Name="LastNameTb" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                         <TextBlock>Имя</TextBlock>
-                        <TextBox x:Name="FirsNameTb" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
+                        <TextBox Text="{Binding Reader.Firstname}" x:Name="FirsNameTb" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                         <TextBlock>Отчество</TextBlock>
-                        <TextBox x:Name="PatronymicTb" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
+                        <TextBox Text="{Binding Reader.Patronymic}" x:Name="PatronymicTb" PreviewTextInput="TextBox_PreviewTextInput"></TextBox>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                         <TextBlock>Адрес</TextBlock>
-                        <TextBox x:Name="AddressTb"></TextBox>
+                        <TextBox Text="{Binding Reader.Address}" x:Name="AddressTb"></TextBox>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                         <TextBlock>Телефон</TextBlock>
-                        <TextBox x:Name="PhoneTb" PreviewTextInput="TextBoxNumber_PreviewTextInput"></TextBox>
+                        <TextBox Text="{Binding Reader.Phone}" x:Name="PhoneTb" PreviewTextInput="TextBoxNumber_PreviewTextInput"></TextBox>
                     </StackPanel>
                 </StackPanel>
    
                 <StackPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                         <TextBlock>Логин</TextBlock>
-                        <TextBox x:Name="LoginTb"></TextBox>
+                        <TextBox Text="{Binding Login}" x:Name="LoginTb"></TextBox>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                         <TextBlock>Пароль</TextBlock>
@@ -51,7 +51,7 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-            <Button x:Name="RegistrationBtn" Click="RegistrationBtn_Click">Зарегистрироваться</Button>
+            <Button x:Name="RegistrationBtn" Click="RegistrationBtn_Click">Сохранить</Button>
             <Button x:Name="CancelBtn" Click="CancelBtn_Click">Отмена</Button>
         </StackPanel>
       

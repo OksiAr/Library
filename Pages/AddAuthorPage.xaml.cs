@@ -28,9 +28,22 @@ namespace Library.Pages
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
+            //добавление нового автора в базу данных
             App.db.Authors.Add(new Models.Author() { Firstname = FirsNameTb.Text, Lastname = LastNameTb.Text, Patronymic = PatronymicTb.Text });
             App.db.SaveChanges();
             Navigation.BackPage();
+        }
+
+      
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //в текстбокс можно вводить только буквы
+            if (char.IsDigit(char.Parse(e.Text)))
+            {
+                e.Handled = true;
+            }
+
         }
     }
 }

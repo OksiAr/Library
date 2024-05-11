@@ -6,10 +6,18 @@
       xmlns:local="clr-namespace:Library.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ReaderMenuPage">
+      Title="Меню чичтателя">
 
     <Grid>
-        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock HorizontalAlignment="Right" Margin="5">
+     <Hyperlink Name="HelpBtn" Foreground="Black" Click="HelpBtn_Click">Справка</Hyperlink>
+        </TextBlock>
+
+        <StackPanel  HorizontalAlignment="Center"  VerticalAlignment="Center"  Grid.Row="1">
             <Button x:Name="BookListBtn" Click="BookListBtn_Click">Книги в библиотеки</Button>
             <Button x:Name="BookIssuancetBtn" Click="BookIssuancetBtn_Click" >Взятые киниги</Button>
         </StackPanel>

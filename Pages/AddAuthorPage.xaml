@@ -6,21 +6,21 @@
       xmlns:local="clr-namespace:Library.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddAuthorPage">
+      Title="Добавление автора">
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                 <TextBlock>Фамилия</TextBlock>
-                <TextBox x:Name="LastNameTb"></TextBox>
+                <TextBox PreviewTextInput="TextBox_PreviewTextInput" x:Name="LastNameTb"></TextBox>
             </StackPanel>
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                 <TextBlock>Имя</TextBlock>
-                <TextBox x:Name="FirsNameTb"></TextBox>
+                <TextBox PreviewTextInput="TextBox_PreviewTextInput" x:Name="FirsNameTb"></TextBox>
             </StackPanel>
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                 <TextBlock>Отчество</TextBlock>
-                <TextBox x:Name="PatronymicTb"></TextBox>
+                <TextBox PreviewTextInput="TextBox_PreviewTextInput" x:Name="PatronymicTb"></TextBox>
             </StackPanel>
             <Button x:Name="AddBtn" Click="AddBtn_Click">Добавить</Button>
         </StackPanel>

@@ -28,9 +28,20 @@ namespace Library.Pages
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
+            //добавление нового жанра
             App.db.Genres.Add(new Models.Genre() { Name = NameTb.Text });
             App.db.SaveChanges();
             Navigation.BackPage();
+        }
+
+        private void NameTb_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //в текстбокс можно вводить только буквы
+            if (char.IsDigit(char.Parse(e.Text)))
+            {
+                e.Handled = true;
+            }
+
         }
     }
 }

@@ -28,22 +28,35 @@ namespace Library.Pages
             InitializeComponent();
             book = _book;
             this.DataContext = book;
+            //заполнение комбобокса жанрами из базы
             GenreCb.ItemsSource = App.db.Genres.ToList();
             GenreCb.DisplayMemberPath = "Name";
+            //заполнение комбобокса авторами из базы
             AuthorCb.ItemsSource = App.db.Authors.ToList();
             AuthorCb.DisplayMemberPath = "FullName";
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            book.GenreId = (GenreCb.SelectedItem as Genre).Id;
-            book.AuthorId = (AuthorCb.SelectedItem as Author).Id;
-            if (book.Id == 0)
-                App.db.Books.Add(book);
-
-            App.db.SaveChanges();
-            MessageBox.Show("Операция выполнена успешно!");
-            Navigation.NextPage(new PageComponent("Книги", new BookListPage()));
+            try
+            {
+                
+                //у жанра и автора взять Id
+                book.GenreId = (GenreCb.SelectedItem as Genre).Id;
+                book.AuthorId = (AuthorCb.SelectedItem as Author).Id;
+                //если id книги = 0 значит выболнить добавление новой записи, иначе обновление записи в базе
+                if (book.Id == 0)
+                    App.db.Books.Add(book);
+                //сохранение изменеий в базе данных
+                App.db.SaveChanges();
+                MessageBox.Show("Операция выполнена успешно!");
+                Navigation.NextPage(new PageComponent("Книги", new BookListPage()));
+            }
+            catch
+            {
+                MessageBox.Show("Заполните поля!");
+            }
+         
         }
 
         private void AddAuthorBtn_Click(object sender, RoutedEventArgs e)

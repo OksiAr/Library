@@ -27,18 +27,26 @@ namespace Library.Pages
         public BookListPage()
         {
             InitializeComponent();
-            var genres = App.db.Genres.ToList();
-            genres.Insert(0, new Genre() { Id = 0, Name = "Все книги" });
-            GenrehCb.ItemsSource = genres;
-            GenrehCb.DisplayMemberPath = "Name";
-            Refresh();
-            //если авторизован не админ скрыть кнопки дабвить, изменить, удалить
-            if (App.AuthUser.RoleId != 1)
+            try
             {
-                AddBtn.Visibility = Visibility.Collapsed;
-                EditBtn.Visibility = Visibility.Collapsed;
-                DeleteBtn.Visibility = Visibility.Collapsed;
+                var genres = App.db.Genres.ToList();
+                genres.Insert(0, new Genre() { Id = 0, Name = "Все книги" });
+                GenrehCb.ItemsSource = genres;
+                GenrehCb.DisplayMemberPath = "Name";
+                Refresh();
+                //если авторизован не админ скрыть кнопки дабвить, изменить, удалить
+                if (App.AuthUser.RoleId != 1)
+                {
+                    AddBtn.Visibility = Visibility.Collapsed;
+                    EditBtn.Visibility = Visibility.Collapsed;
+                    DeleteBtn.Visibility = Visibility.Collapsed;
+                }
             }
+            catch
+            {
+                MessageBox.Show("Возникла ошибка!");
+            }
+           
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -48,6 +56,7 @@ namespace Library.Pages
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
+            //если книга выбрана из списка, открыть окно редактирования
             var selBook = BookList.SelectedItem as Book;
             if (selBook != null)
             {
@@ -62,42 +71,62 @@ namespace Library.Pages
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            var selBook = BookList.SelectedItem as Book;
-            if (selBook != null)
+            try
             {
-                MessageBoxResult result = MessageBox.Show($"Вы действительно хотите удалить книгу \"{selBook.Name}\"", "Удаление книги", MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
+                //если книга выбрана из списка
+                var selBook = BookList.SelectedItem as Book;
+                if (selBook != null)
                 {
-                    App.db.Books.Remove(selBook);
-                    App.db.SaveChanges();
-                    Refresh();
+                    //откравать окно с кнопка да, нет, если выбрано да, удалить книгу
+                    MessageBoxResult result = MessageBox.Show($"Вы действительно хотите удалить книгу \"{selBook.Name}\"", "Удаление книги", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        App.db.Books.Remove(selBook);
+                        App.db.SaveChanges();
+                        Refresh();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Выберете книгу для удаления!");
                 }
             }
-            else
+            catch
             {
-                MessageBox.Show("Выберете книгу для удаления!");
+                MessageBox.Show("Возникла ошибка!");
             }
+           
         }
+        //метод организующий выборку из списка( фильткацию и поиск)
         public void Refresh()
         {
-            IEnumerable<Book> books = App.db.Books
-                .Include(b => b.Author)
-                .Include(b => b.Genre)
-                .ToList();
-
-            if (SearchTb.Text.Length > 0)
+            try
             {
-                books = books.Where(x =>
-                x.Name.ToLower().Contains(SearchTb.Text.ToLower())
-                || x.Author.FullName.ToLower().Contains(SearchTb.Text.ToLower()));
+                IEnumerable<Book> books = App.db.Books
+                               .Include(b => b.Author)
+                               .Include(b => b.Genre)
+                               .ToList();
+                //если что-то введено в поле поиск выполни поиск по наименованию или автору
+                if (SearchTb.Text.Length > 0)
+                {
+                    books = books.Where(x =>
+                    x.Name.ToLower().Contains(SearchTb.Text.ToLower())
+                    || x.Author.FullName.ToLower().Contains(SearchTb.Text.ToLower()));
+                }
+                //если выбран какой-то жанр отбери книги с этим жанром
+                if (GenrehCb.SelectedIndex > 0)
+                {
+                    var selGenre = GenrehCb.SelectedItem as Genre;
+                    books = books.Where(x => x.Genre.Name == selGenre.Name);
+                }
+                //заполнение списка фильтрованными данными
+                BookList.ItemsSource = books;
             }
-
-            if (GenrehCb.SelectedIndex > 0)
+            catch
             {
-                var selGenre = GenrehCb.SelectedItem as Genre;
-                books = books.Where(x => x.Genre.Name == selGenre.Name);
+                MessageBox.Show("Возникла ошибка!");
             }
-            BookList.ItemsSource = books;
+           
 
         }
         private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)

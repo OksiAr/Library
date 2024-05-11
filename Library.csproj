@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>libraryicon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +13,10 @@
     <None Remove="bookfurniture.png" />
     <None Remove="librarybooks.jpg" />
     <None Remove="probiblioteku.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="libraryicon.ico" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using Library.Components;
 using Library.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,13 @@ namespace Library.Pages
     /// </summary>
     public partial class RegistrationPage : Page
     {
-        public RegistrationPage()
+        User user;
+        public RegistrationPage(User _user)
         {
             InitializeComponent();
+            user = _user;
+            DataContext = user;
+          
         }
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -55,73 +60,76 @@ namespace Library.Pages
                     ValidTb.Text = "Неверный номер!";
                     return;
                 }
-                //проверка не занят ли логин
-                if (App.db.Users.Any(x => x.Login == LoginTb.Text))
-                {
-                    ValidTb.Text = "Логин занят";
-                    return;
-                }
+                
+                var localPassword = PasswordTb.Password != "" ? PasswordTb.Password : user.Password;
                 //проверка пароля 
-                if (!hasNumber.IsMatch(PasswordTb.Password))
+                if (!hasNumber.IsMatch(localPassword))
                 {
                     ValidTb.Text = "Пароль дложен содержать цифру!";
                     return;
                 }
-                if (!hasUpperChar.IsMatch(PasswordTb.Password))
+                if (!hasUpperChar.IsMatch(localPassword))
                 {
                     ValidTb.Text = "Пароль дложен содержать заглавную букву!";
                     return;
                 }
-                if (!hasMinimum6Chars.IsMatch(PasswordTb.Password))
+                if (!hasMinimum6Chars.IsMatch(localPassword))
                 {
                     ValidTb.Text = "Пароль дложен состоять минимум из 6 символов!";
                     return;
                 }
-                if (PasswordTb.Password == PasswordTwoTb.Password)
+                if (PasswordTb.Password != PasswordTwoTb.Password)
                 {
                     ValidTb.Text = "Пароли не совпадают!";
                     return;
                 }
 
+                user.Password = localPassword;
                 ValidTb.Text = "";
-                //добавление нового читателя в базу
-                var reader = App.db.Readers.Add(new Reader()
+                if (user.Id == 0)
                 {
-                    Lastname = LastNameTb.Text,
-                    Firstname = FirsNameTb.Text,
-                    Patronymic = PatronymicTb.Text,
-                    Address = AddressTb.Text,
-                    Phone = PhoneTb.Text
-                });
+                    //добавление нового читателя в базу
+                    var reader = App.db.Readers.Add(new Reader()
+                    {
+                        Lastname = LastNameTb.Text,
+                        Firstname = FirsNameTb.Text,
+                        Patronymic = PatronymicTb.Text,
+                        Address = AddressTb.Text,
+                        Phone = PhoneTb.Text
+                    });
+
+                    //добавление нового польхователя системы, к пользователю привязывается чичтатель
+                    App.db.Users.Add(new User()
+                    {
+                        Login = LoginTb.Text,
+                        Password = localPassword,
+                        ReaderNumberCard = reader.Entity.NumberLibraryCard,
+                        RoleId = 2
+                    });
+                }
+
                 App.db.SaveChanges();
-                //добавление нового польхователя системы, к пользователю привязывается чичтатель
-                App.db.Users.Add(new User()
-                {
-                    Login = LoginTb.Text,
-                    Password = PasswordTb.Password,
-                    ReaderNumberCard = reader.Entity.NumberLibraryCard,
-                    RoleId = 2
-                });
-                App.db.SaveChanges();
-                MessageBox.Show("Регистрация прошла успешно");
+                MessageBox.Show("Сохранено!");
                 Navigation.BackPage();
+            }
+            catch (DbUpdateException ex)
+            {
+                MessageBox.Show("Логин занят");
             }
             catch
             {
-                MessageBox.Show("Возникла ошибка");
+                MessageBox.Show("Возникла ошибка!");
             }
-          
         }
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             //в текстбокс можно вводить только буквы
-            if (char.IsDigit(char.Parse(e.Text)))         
+            if (char.IsDigit(char.Parse(e.Text)))
             {
                 e.Handled = true;
             }
         }
-
         private void TextBoxNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             //в тексибокс можно вводить только цифры

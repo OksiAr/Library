@@ -1,0 +1,25 @@
+﻿<Page x:Class="Library.Pages.ReaderHelpPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Library.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Справка">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock TextWrapping="Wrap">По нажатию кнопки Выход в правом верхнем углу, происходит выход из учетной записи и переход на окно авторизации</TextBlock>
+            <TextBlock TextWrapping="Wrap">По нажатию кнопки Взятые книги в меню читателя, открывается список взятых читателем книг.</TextBlock>
+            <TextBlock TextWrapping="Wrap">Если срок возврата просрочен, запись выделяется красной рамкой, внизу записи выводится красный текст Возврат проcрочен.</TextBlock>
+            <TextBlock TextWrapping="Wrap">Возможен поиск по наименованию книги.</TextBlock>
+            
+            <TextBlock Margin="0 35 0 0" TextWrapping="Wrap">По нажатию кнопки Книги в меню читателя, открывается окно со списком всех книг в библиотеке.</TextBlock>
+            <TextBlock TextWrapping="Wrap">Если свободных копий нет, книга выводится серым цветом, внизу записи выводится красный текст Все копии на руках.</TextBlock>
+            <TextBlock TextWrapping="Wrap">Возможно осуществить выборку книг по наименованию и по ФИО автора, а также выполнить фильтрацию по жанру.</TextBlock>
+            
+        </StackPanel>
+       
+    </Grid>
+</Page>

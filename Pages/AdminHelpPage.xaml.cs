@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Library.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для InformationPage.xaml
+    /// Логика взаимодействия для AdminHelpPage.xaml
     /// </summary>
-    public partial class InformationPage : Page
+    public partial class AdminHelpPage : Page
     {
-        public InformationPage()
+        public AdminHelpPage()
         {
             InitializeComponent();
         }

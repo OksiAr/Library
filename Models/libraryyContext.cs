@@ -202,7 +202,7 @@ namespace Library.Models
 
                 entity.Property(e => e.RoleId).HasColumnName("roleId");
 
-                entity.HasOne(d => d.ReaderNumberCardNavigation)
+                entity.HasOne(d => d.Reader)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.ReaderNumberCard)
                     .HasConstraintName("users_reader");

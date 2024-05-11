@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace Library.Components
         private static void Update(PageComponent pageComponent)
         {
             mainWindow.TitleTb.Text = pageComponent.Title;
-            mainWindow.BackBtn.Visibility = components.Count() > 2 ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
+            mainWindow.BackBtn.Visibility = pageComponent.Page is ReaderMenuPage || pageComponent.Page is AdminMenuPage || pageComponent.Page is AuthorizationPage ? System.Windows.Visibility.Hidden : System.Windows.Visibility.Visible;
             mainWindow.ExitBtn.Visibility = App.isAuth ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
             mainWindow.MainFrame.Navigate(pageComponent.Page);
         }

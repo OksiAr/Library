@@ -11,7 +11,7 @@ namespace Library.Models
         public int RoleId { get; set; }
         public int? ReaderNumberCard { get; set; }
 
-        public virtual Reader? ReaderNumberCardNavigation { get; set; }
+        public virtual Reader Reader { get; set; }
         public virtual Role Role { get; set; } = null!;
     }
 }

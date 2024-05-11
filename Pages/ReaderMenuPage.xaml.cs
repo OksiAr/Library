@@ -35,5 +35,10 @@ namespace Library.Pages
         {
             Navigation.NextPage(new PageComponent("Взятые книги", new IssuanceAndReturnBookPage()));
         }
+
+        private void HelpBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Navigation.NextPage(new PageComponent("Справка читателя", new ReaderHelpPage()));
+        }
     }
 }

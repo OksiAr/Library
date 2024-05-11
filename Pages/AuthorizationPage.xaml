@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Library.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AuthorizationPage" >
+      Title="Авторизация">
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -20,6 +20,11 @@
             </StackPanel>
             <Button x:Name="EntryBtn" Click="EntryBtn_Click">Войти</Button>
             <Button x:Name="RegistrationBtn" Click="RegistrationBtn_Click">Регистрация</Button>
+
+            <TextBlock HorizontalAlignment="Center" Margin="5">
+                <Hyperlink Name="OpenBookList" Foreground="Black" Click="OpenBookList_Click">Войти как гость</Hyperlink>
+            </TextBlock>
+           
         </StackPanel>
     </Grid>
 </Page>

@@ -29,32 +29,43 @@ namespace Library.Pages
 
         private void EntryBtn_Click(object sender, RoutedEventArgs e)
         {
-
-            App.AuthUser = App.db.Users.FirstOrDefault(x => x.Login == LoginTb.Text && x.Password == PasswordPb.Password);
-
-            if (App.AuthUser != null)
+            try
             {
-                App.isAuth = true;
-                if (App.AuthUser.RoleId == 1)
+                //найти в таблице USER пользователя с данным логином и паролем
+                App.AuthUser = App.db.Users.FirstOrDefault(x => x.Login == LoginTb.Text && x.Password == PasswordPb.Password);
+                //если пользователь найден
+                if (App.AuthUser != null)
                 {
-                    Navigation.NextPage(new PageComponent("Меню администратора", new AdminMenuPage()));
+                    //переменная авторизован? становится истинным, на окне появится кнопка Выход
+                    App.isAuth = true;
+                    //если у найденного пользователя роль=1 открыть меню администрартора
+                    if (App.AuthUser.RoleId == 1)
+                    {
+                        Navigation.NextPage(new PageComponent("Меню администратора", new AdminMenuPage()));
+                    }
+                    else //иначе меню читптеля
+                    {
+                        Navigation.NextPage(new PageComponent("Меню читателя", new ReaderMenuPage()));
+                    }
                 }
                 else
                 {
-                    Navigation.NextPage(new PageComponent("Меню читателя", new ReaderMenuPage()));
+                    MessageBox.Show("Такого пользователя не существует!!!");
                 }
             }
-            else
+            catch 
             {
-                MessageBox.Show("Такого пользователя не существует!!!");
-            }
-
-
+                MessageBox.Show("Возникла ошибка!");
+            }   
         }
-
         private void RegistrationBtn_Click(object sender, RoutedEventArgs e)
         {
-            Navigation.NextPage(new PageComponent("Регистрация читателя", new RegistrationPage()));
+            Navigation.NextPage(new PageComponent("Регистрация читателя", new RegistrationPage(new User())));
+        }
+
+        private void OpenBookList_Click(object sender, RoutedEventArgs e)
+        {
+            Navigation.NextPage(new PageComponent("Книги", new BookListPage()));
         }
     }
 }

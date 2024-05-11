@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Library.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddEditBookPage" Loaded="Page_Loaded">
+      Title="Добавление/редактирование книги" Loaded="Page_Loaded">
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Library.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="IssuanceAndReturnBookPage" Loaded="Page_Loaded">
+      Title="Возврат/продление/выдача книги" Loaded="Page_Loaded">
 
     <Grid >
         <Grid.RowDefinitions>
@@ -76,7 +76,7 @@
 
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button x:Name="AddBtn" Click="AddBtn_Click">Добавить</Button>
+            <Button x:Name="AddBtn" Click="AddBtn_Click">Выдать книгу</Button>
         </StackPanel>
     </Grid>
 </Page>

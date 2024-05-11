@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Library.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="IssuanceBookPage">
+      Title="Выдача книги">
 
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid>
@@ -29,9 +29,9 @@
             <TextBlock Grid.Row="3" Grid.Column="0">Дата выдачи:</TextBlock>
             <TextBlock Grid.Row="4" Grid.Column="0">Дата возврата:</TextBlock>
 
-            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="BookCb" Margin="5"></ComboBox>
-            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="ReaderCb" Margin="5"></ComboBox>
-            <ComboBox Grid.Row="2" Grid.Column="1" x:Name="NumberCb" Margin="5"></ComboBox>
+            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="BookCb" IsEditable="True" Margin="5"></ComboBox>
+            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="ReaderCb" IsEditable="True"  Margin="5" SelectionChanged="ReaderCb_SelectionChanged"></ComboBox>
+            <ComboBox Grid.Row="2" Grid.Column="1" x:Name="NumberCb" IsEditable="True"  Margin="5" SelectionChanged="NumberCb_SelectionChanged"></ComboBox>
             <DatePicker Grid.Row="3" Grid.Column="1" x:Name="DateIssueDp" IsEnabled="False"  Margin="5"></DatePicker>
             <DatePicker Grid.Row="4" Grid.Column="1" IsEnabled="False" Name="DateReturnDp" Margin="5" ></DatePicker>
 

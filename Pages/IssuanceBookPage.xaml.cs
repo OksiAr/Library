@@ -35,6 +35,10 @@ namespace Library.Pages
             ReaderCb.ItemsSource = App.db.Readers.ToList();
             ReaderCb.DisplayMemberPath = "FullName";
 
+            //заполнение комбобокса номерами читательских карт из базы
+            NumberCb.ItemsSource = App.db.Readers.ToList();
+            NumberCb.DisplayMemberPath = "NumberLibraryCard";
+
             //автоматическое заполнение даты выдачи текущей датой
             DateIssueDp.SelectedDate = DateTime.Now;
             //автоматическое заполнение даты возврата(текущая дата  + 30 дней)
@@ -78,6 +82,18 @@ namespace Library.Pages
                 MessageBox.Show("Возникла ошибка");
             }    
            
+        }
+
+        private void ReaderCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selReader = ReaderCb.SelectedItem as Reader;
+            NumberCb.SelectedItem = selReader;
+        }
+
+        private void NumberCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selReader = NumberCb.SelectedItem as Reader;
+            ReaderCb.SelectedItem = selReader;
         }
     }
 }

@@ -6,13 +6,13 @@
       xmlns:local="clr-namespace:Library.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddGenrePage">
+      Title="Добавление жанра">
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                 <TextBlock>Название жанра</TextBlock>
-                <TextBox x:Name="NameTb"></TextBox>
+                <TextBox PreviewTextInput="NameTb_PreviewTextInput" x:Name="NameTb"></TextBox>
             </StackPanel>
             <Button x:Name="AddBtn" Click="AddBtn_Click">Добавить</Button>
         </StackPanel>

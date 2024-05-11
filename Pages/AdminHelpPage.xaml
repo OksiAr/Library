@@ -1,0 +1,34 @@
+﻿<Page x:Class="Library.Pages.AdminHelpPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Library.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Справка">
+
+    <Grid>
+        <ScrollViewer>
+            <StackPanel>
+                <TextBlock TextWrapping="Wrap">По нажатию кнопки Выход в правом верхнем углу, происходит выход из учетной записи и переход на окно авторизации</TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="5 35 0 0" >По нажатию кнопки Выдача и возврат в меню администратора, открывается список взятых книг читателями.</TextBlock>
+                <TextBlock TextWrapping="Wrap">Если срок возврата просрочен, запись выделяется красной рамкой, внизу записи выводится красный текст Возврат проcрочен.</TextBlock>
+                <TextBlock TextWrapping="Wrap">Возможен поиск по наименованию книги, ФИО читателя и читательского номера.</TextBlock>
+                <TextBlock TextWrapping="Wrap">По нажатию кнопки Продлить на записи открывается окно с информацией данной записи, где возможно изменить дату возврата</TextBlock>
+                <TextBlock TextWrapping="Wrap">По нажатию кнопки Возврат происходит возврат кинги в библеотеку</TextBlock>
+                <TextBlock TextWrapping="Wrap">По нажатию кнопки Выдать книгу, октрывается окно выдачи книги, где необходимо заполнить необходимую информацию, дата выдачи устанавливается автоматически текущей датой, а дата возвата высчитывается +30 дней к текущей дате.</TextBlock>
+
+
+                <TextBlock Margin="5 35 0 0" TextWrapping="Wrap">По нажатию кнопки Книги в меню администратора, открывается окно со списком всех книг в библиотеке.</TextBlock>
+                <TextBlock TextWrapping="Wrap">Если свободных копий нет, книга выводится серым цветом, внизу записи выводится красный текст Все копии на руках.</TextBlock>
+                <TextBlock TextWrapping="Wrap">Возможно осуществить выборку книг по наименованию и по ФИО автора, а также выполнить фильтрацию по жанру.</TextBlock>
+                <TextBlock TextWrapping="Wrap">По нажатию кнопки Добавит/Изменить/Удалить выполняется соответсвующая операция.</TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="5 35 0 0">По нажатию кнопки Читатели в меню администратора, открывается окно со списком всех читателей.</TextBlock>
+                <TextBlock TextWrapping="Wrap">Возможно осуществить поиск по ФИО или читательскому номеру.</TextBlock>
+                <TextBlock TextWrapping="Wrap">По нажатию кнопки Добавит/Изменить/Удалить выполняется соответсвующая операция.</TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+      
+    </Grid>
+</Page>

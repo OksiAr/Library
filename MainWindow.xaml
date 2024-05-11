@@ -5,23 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800" Background="White">
+        Title="Библиотека" Height="500" Width="800" Background="White">
     <Grid>
-        <!--Background="#000096"-->
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
-            <RowDefinition Height="170*"/>
-            <RowDefinition Height="20*"/>
+            <RowDefinition Height="180*"/>
         </Grid.RowDefinitions>
         <Image Source="/probiblioteku.jpg" Grid.RowSpan="3" Stretch="Fill" Opacity="0.5"/>
         <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock x:Name="TitleTb" FontSize="25">Районная библиотека</TextBlock>
+            <TextBlock x:Name="TitleTb" FontSize="23">Районная библиотека</TextBlock>
+        </StackPanel>
+        <StackPanel  Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button x:Name="BackBtn" Click="BackBtn_Click" >Назад</Button>
             <Button x:Name="ExitBtn" Click="ExitBtn_Click" >Выход</Button>
         </StackPanel>
-
         <Frame NavigationUIVisibility="Hidden" x:Name="MainFrame" Grid.Row="1"/>
-
-        <Button x:Name="BackBtn" Click="BackBtn_Click" Grid.Row="2" HorizontalAlignment="Left">Назад</Button>
-
+     
     </Grid>
 </Window>
