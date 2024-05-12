@@ -87,9 +87,23 @@ namespace Library.Pages
         {
             try
             {
-                //при возврате запись из базы о выдаче удаляется
+                //при возврате запись из таблицы возвраткинги перемещается в возвраткингиархив
+                //отслеживаем на какой записи была нажата кнопка возврат
                 var select = (sender as Button).DataContext as Bookissuance;
+                //сохдаем новый обьект типа bookissuancearchive (архив)
+                Bookissuancearchive bookissuancearchive = new Bookissuancearchive()
+                {
+                    BookId = select.BookId,
+                    BookName = select.Book.Name,
+                    DateOfIssue = select.DateOfIssue,
+                    DateOfReturn = DateTime.Now,
+                    ReaderNumberLibraryCard = select.ReaderNumberLibraryCard,
+                    FullNameReader = select.Reader.FullName
+                };
+                //удаление записи из таблицы Bookissuances
                 App.db.Bookissuances.Remove(select);
+                //добавление записи в архивную таблицу
+                App.db.Bookissuancearchives.Add(bookissuancearchive);
                 //после возврата количесво копий данной книги +1
                 var returnBook = App.db.Books.FirstOrDefault(x => x.Id == select.BookId);
                 returnBook.CountCopies += 1;

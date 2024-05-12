@@ -19,11 +19,12 @@ namespace Library.Models
         public virtual DbSet<Author> Authors { get; set; } = null!;
         public virtual DbSet<Book> Books { get; set; } = null!;
         public virtual DbSet<Bookissuance> Bookissuances { get; set; } = null!;
+        public virtual DbSet<Bookissuancearchive> Bookissuancearchives { get; set; } = null;
         public virtual DbSet<Genre> Genres { get; set; } = null!;
         public virtual DbSet<Reader> Readers { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
-
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -92,8 +93,30 @@ namespace Library.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("genre_books");
             });
+            modelBuilder.Entity<Bookissuancearchive>(entity =>
+            {
+                entity.ToTable("bookissuancearchive");
 
-            modelBuilder.Entity<Bookissuance>(entity =>
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.BookId).HasColumnName("bookId");
+                entity.Property(e => e.BookName).HasMaxLength(45).HasColumnName("bookName");
+              
+                entity.Property(e => e.DateOfIssue)
+                    .HasColumnType("datetime")
+                    .HasColumnName("dateOfIssue");
+
+                entity.Property(e => e.DateOfReturn)
+                    .HasColumnType("datetime")
+                    .HasColumnName("dateOfReturn");
+
+                entity.Property(e => e.ReaderNumberLibraryCard).HasMaxLength(20).HasColumnName("readerNumberLibraryCard");
+
+                entity.Property(e => e.FullNameReader).HasMaxLength(80).HasColumnName("fullNameReader");
+
+
+            });
+                modelBuilder.Entity<Bookissuance>(entity =>
             {
                 entity.ToTable("bookissuance");
 

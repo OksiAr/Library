@@ -58,11 +58,11 @@
             </StackPanel>
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                 <TextBlock>Год</TextBlock>
-                <TextBox Text="{Binding Year}"></TextBox>
+                <TextBox PreviewTextInput="TextBox_PreviewTextInput" Text="{Binding Year}"></TextBox>
             </StackPanel>
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5">
                 <TextBlock>Количество</TextBlock>
-                <TextBox Text="{Binding CountCopies}"></TextBox>
+                <TextBox PreviewTextInput="TextBox_PreviewTextInput"  Text="{Binding CountCopies}"></TextBox>
             </StackPanel>
             <Button x:Name="SaveBtn" Click="SaveBtn_Click">Сохранить</Button>
         </StackPanel>

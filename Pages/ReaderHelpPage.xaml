@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Справка">
 
-    <Grid>
+    <Grid Background="White">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock TextWrapping="Wrap">По нажатию кнопки Выход в правом верхнем углу, происходит выход из учетной записи и переход на окно авторизации</TextBlock>
             <TextBlock TextWrapping="Wrap">По нажатию кнопки Взятые книги в меню читателя, открывается список взятых читателем книг.</TextBlock>

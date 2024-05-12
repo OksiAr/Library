@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Справка">
 
-    <Grid>
+    <Grid Background="White">
         <ScrollViewer>
             <StackPanel>
                 <TextBlock TextWrapping="Wrap">По нажатию кнопки Выход в правом верхнем углу, происходит выход из учетной записи и переход на окно авторизации</TextBlock>

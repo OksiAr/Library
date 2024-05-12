@@ -44,7 +44,7 @@ namespace Library.Pages
                 //у жанра и автора взять Id
                 book.GenreId = (GenreCb.SelectedItem as Genre).Id;
                 book.AuthorId = (AuthorCb.SelectedItem as Author).Id;
-                //если id книги = 0 значит выболнить добавление новой записи, иначе обновление записи в базе
+                //если id книги = 0 значит выполнить добавление новой записи, иначе обновление записи в базе
                 if (book.Id == 0)
                     App.db.Books.Add(book);
                 //сохранение изменеий в базе данных
@@ -75,6 +75,16 @@ namespace Library.Pages
             GenreCb.DisplayMemberPath = "Name";
             AuthorCb.ItemsSource = App.db.Authors.ToList();
             AuthorCb.DisplayMemberPath = "FullName";
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //в текстбокс год и кол-во копий можно вводить только цифры
+            if (!char.IsDigit(char.Parse(e.Text)))
+            {
+                e.Handled = true;
+            }
+
         }
     }
 }

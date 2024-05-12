@@ -46,5 +46,11 @@ namespace Library.Pages
         {
             Navigation.NextPage(new PageComponent("Справка администратора", new AdminHelpPage()));
         }
+
+        private void ArchiveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Navigation.NextPage(new PageComponent("Архив выданных книг", new BookIssuanceArchivePage()));
+
+        }
     }
 }
