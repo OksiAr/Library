@@ -50,7 +50,7 @@ namespace Library.Pages
                 //сохранение изменеий в базе данных
                 App.db.SaveChanges();
                 MessageBox.Show("Операция выполнена успешно!");
-                Navigation.NextPage(new PageComponent("Книги", new BookListPage()));
+                Navigation.BackPage();
             }
             catch
             {

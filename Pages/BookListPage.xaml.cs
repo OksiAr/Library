@@ -174,6 +174,10 @@ namespace Library.Pages
             Refresh();
         }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            Refresh();
 
+        }
     }
 }

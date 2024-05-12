@@ -18,8 +18,8 @@
         </TextBlock>
 
         <StackPanel  HorizontalAlignment="Center"  VerticalAlignment="Center"  Grid.Row="1">
-            <Button x:Name="BookListBtn" Click="BookListBtn_Click">Книги в библиотеки</Button>
-            <Button x:Name="BookIssuancetBtn" Click="BookIssuancetBtn_Click" >Взятые киниги</Button>
+            <Button x:Name="BookListBtn" Click="BookListBtn_Click">Книги в библиотеке</Button>
+            <Button x:Name="BookIssuancetBtn" Click="BookIssuancetBtn_Click" >Выданные книги</Button>
         </StackPanel>
     </Grid>
 </Page>

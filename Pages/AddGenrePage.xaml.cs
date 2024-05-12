@@ -28,9 +28,17 @@ namespace Library.Pages
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(NameTb.Text))
+            {
+                MessageBox.Show("Заполните поле!");
+                return;
+                ;
+            }
             //добавление нового жанра
             App.db.Genres.Add(new Models.Genre() { Name = NameTb.Text });
+            //сохранение в базе данных
             App.db.SaveChanges();
+            //переход на предыдущую страницу
             Navigation.BackPage();
         }
 

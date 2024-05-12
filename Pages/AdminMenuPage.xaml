@@ -14,7 +14,7 @@
         </TextBlock>
         <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button x:Name="IssuanceAndReturnBookBtn" Click="IssuanceAndReturnBookBtn_Click">Выдача и возврат книг</Button>
-            <Button x:Name="BookListBtn" Click="BookListBtn_Click">Книги в библиотеки</Button>
+            <Button x:Name="BookListBtn" Click="BookListBtn_Click">Книги в библиотеке</Button>
             <Button x:Name="ReadersListBtn" Click="ReadersListBtn_Click">Читатели</Button>
             <Button x:Name="ArchiveBtn" Click="ArchiveBtn_Click">Архив возвращенных книг</Button>
             <Button x:Name="ArchiveBookBtn" Click="ArchiveBookBtn_Click">Архив книг</Button>

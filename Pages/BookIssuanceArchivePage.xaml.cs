@@ -36,7 +36,7 @@ namespace Library.Pages
 
                 bookissuancesarchive = App.db.Bookissuancearchives.ToList();
                
-                //если что-то введено в поле поиск, из списка отбирать или по ФИО, или по номеру читательского, или по наименованию книги
+                //если что-то введено в поле поиск, из списка отбирать по ФИО, или по номеру читательского, или по наименованию книги
                 if (SearchTb.Text.Length > 0)
                 {
                     bookissuancesarchive = bookissuancesarchive.Where(x =>
@@ -44,7 +44,7 @@ namespace Library.Pages
                     || x.ReaderNumberLibraryCard.ToString().Contains(SearchTb.Text)
                     || x.BookName.ToLower().Contains(SearchTb.Text.ToLower()));
                 }
-
+                //заполнение списка фильтрованными данными
                 ArchiveReturnBookList.ItemsSource = bookissuancesarchive;
 
             }

@@ -57,9 +57,11 @@ namespace Library.Pages
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
+            //если что-то выбрано из списка открыть окно редактирования
             var selReader = ReaderList.SelectedItem as Reader;
             if (selReader != null)
             {
+                //на окно редактирования передать выбранного пользователя
                 Navigation.NextPage(new PageComponent("Редактирование читателя", new RegistrationPage(App.db.Users.FirstOrDefault(x=> x.ReaderNumberCard == selReader.NumberLibraryCard))));
             }
             else

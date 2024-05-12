@@ -41,9 +41,11 @@ namespace Library.Pages
         {
             try
             {
+                //регялрные выражения для пароля
                 var hasNumber = new Regex(@"[0-9]+");
                 var hasUpperChar = new Regex(@"[A-Z]+");
                 var hasMinimum6Chars = new Regex(@".{6,}");
+                //регулярное выражание для номера телефона
                 var PhoneRegex = new Regex(@"^(\+7|8|7)\d{10}$");
                 //проверка что поля заполнены
                 if (string.IsNullOrWhiteSpace(LastNameTb.Text)
@@ -107,9 +109,10 @@ namespace Library.Pages
                         RoleId = 2
                     });
                 }
-
+                //сохранение в базе данныз
                 App.db.SaveChanges();
                 MessageBox.Show("Сохранено!");
+                //возврат на предыдущую страницу
                 Navigation.BackPage();
             }
             catch (DbUpdateException ex)

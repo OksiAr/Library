@@ -36,14 +36,14 @@ namespace Library.Pages
                 //если пользователь найден
                 if (App.AuthUser != null)
                 {
-                    //переменная авторизован? становится истинным, на окне появится кнопка Выход
+                    //переменная авторизован? становится истинной, на окне появится кнопка Выход
                     App.isAuth = true;
                     //если у найденного пользователя роль=1 открыть меню администрартора
                     if (App.AuthUser.RoleId == 1)
                     {
                         Navigation.NextPage(new PageComponent("Меню администратора", new AdminMenuPage()));
                     }
-                    else //иначе меню читптеля
+                    else //иначе меню читателя
                     {
                         Navigation.NextPage(new PageComponent("Меню читателя", new ReaderMenuPage()));
                     }

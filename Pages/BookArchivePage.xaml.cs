@@ -29,8 +29,10 @@ namespace Library.Pages
             InitializeComponent();
             try
             {
+                //добавление ного жанра Все книги
                 var genres = App.db.Genres.ToList();
                 genres.Insert(0, new Genre() { Id = 0, Name = "Все книги" });
+                //заполение комбобокса новым жанром и жанрами их базы данных
                 GenrehCb.ItemsSource = genres;
                 GenrehCb.DisplayMemberPath = "Name";
                 Refresh(); 

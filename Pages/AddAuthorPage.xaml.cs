@@ -28,9 +28,16 @@ namespace Library.Pages
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
+            if(string.IsNullOrWhiteSpace(FirsNameTb.Text) || string.IsNullOrWhiteSpace(LastNameTb.Text))
+            {
+                MessageBox.Show("Заполните поля!");
+                return;
+;           }
             //добавление нового автора в базу данных
             App.db.Authors.Add(new Models.Author() { Firstname = FirsNameTb.Text, Lastname = LastNameTb.Text, Patronymic = PatronymicTb.Text });
+            //сохранение в базу данных
             App.db.SaveChanges();
+            //переход на предыдущую страницу
             Navigation.BackPage();
         }
 
