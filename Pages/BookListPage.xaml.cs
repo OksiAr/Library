@@ -111,8 +111,8 @@ namespace Library.Pages
                             App.db.Bookarchives.Add(bookarchive);
                         }
 
-                        // если количесво копий !=0 отнимаем -1 иначе полностью удаляем книгу из базы в архив
-                        if (selBook.CountCopies != 0)
+                        //если количесво копий !=0 отнимаем -1 иначе полностью удаляем книгу из базы в архив
+                        if (selBook.CountCopies > 1)
                             selBook.CountCopies -= 1;
                         else
                             App.db.Books.Remove(selBook);
