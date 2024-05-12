@@ -19,12 +19,13 @@ namespace Library.Models
         public virtual DbSet<Author> Authors { get; set; } = null!;
         public virtual DbSet<Book> Books { get; set; } = null!;
         public virtual DbSet<Bookissuance> Bookissuances { get; set; } = null!;
+        public virtual DbSet<Bookarchive>  Bookarchives { get; set; } = null!;
         public virtual DbSet<Bookissuancearchive> Bookissuancearchives { get; set; } = null;
         public virtual DbSet<Genre> Genres { get; set; } = null!;
         public virtual DbSet<Reader> Readers { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
-        
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -93,63 +94,92 @@ namespace Library.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("genre_books");
             });
+
+            modelBuilder.Entity<Bookarchive>(entity =>
+            {
+                entity.ToTable("booksarchive");
+                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.AuthorId).HasColumnName("authorId");
+
+                entity.Property(e => e.AuthorFullName)
+                    .HasMaxLength(30)
+                    .HasColumnName("authorFullName");
+
+                entity.Property(e => e.GenreId).HasColumnName("genreId");
+                entity.Property(e => e.GenreName)
+                     .HasMaxLength(20)
+                    .HasColumnName("genreName");
+                entity.Property(e => e.CountCopies).HasColumnName("countCopies");
+
+                entity.Property(e => e.BookId).HasColumnName("bookid");
+                entity.Property(e => e.BookName)
+                     .HasMaxLength(45)
+                    .HasColumnName("bookName");
+                
+                entity.Property(e => e.Year).HasColumnName("year");
+
+                entity.Property(e => e.PublihingHouse)
+                    .HasMaxLength(30)
+                    .HasColumnName("publihingHouse");
+            });
+
             modelBuilder.Entity<Bookissuancearchive>(entity =>
-            {
-                entity.ToTable("bookissuancearchive");
+        {
+            entity.ToTable("bookissuancearchive");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.BookId).HasColumnName("bookId");
-                entity.Property(e => e.BookName).HasMaxLength(45).HasColumnName("bookName");
-              
-                entity.Property(e => e.DateOfIssue)
-                    .HasColumnType("datetime")
-                    .HasColumnName("dateOfIssue");
+            entity.Property(e => e.BookId).HasColumnName("bookId");
+            entity.Property(e => e.BookName).HasMaxLength(45).HasColumnName("bookName");
 
-                entity.Property(e => e.DateOfReturn)
-                    .HasColumnType("datetime")
-                    .HasColumnName("dateOfReturn");
+            entity.Property(e => e.DateOfIssue)
+                .HasColumnType("datetime")
+                .HasColumnName("dateOfIssue");
 
-                entity.Property(e => e.ReaderNumberLibraryCard).HasMaxLength(20).HasColumnName("readerNumberLibraryCard");
+            entity.Property(e => e.DateOfReturn)
+                .HasColumnType("datetime")
+                .HasColumnName("dateOfReturn");
 
-                entity.Property(e => e.FullNameReader).HasMaxLength(80).HasColumnName("fullNameReader");
+            entity.Property(e => e.ReaderNumberLibraryCard).HasMaxLength(20).HasColumnName("readerNumberLibraryCard");
+
+            entity.Property(e => e.FullNameReader).HasMaxLength(80).HasColumnName("fullNameReader");
 
 
-            });
-                modelBuilder.Entity<Bookissuance>(entity =>
-            {
-                entity.ToTable("bookissuance");
+        });
+            modelBuilder.Entity<Bookissuance>(entity =>
+        {
+            entity.ToTable("bookissuance");
 
-                entity.HasIndex(e => e.BookId, "bookIssuance_book_idx");
+            entity.HasIndex(e => e.BookId, "bookIssuance_book_idx");
 
-                entity.HasIndex(e => e.ReaderNumberLibraryCard, "bookIssuance_book_idx1");
+            entity.HasIndex(e => e.ReaderNumberLibraryCard, "bookIssuance_book_idx1");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.BookId).HasColumnName("bookId");
+            entity.Property(e => e.BookId).HasColumnName("bookId");
 
-                entity.Property(e => e.DateOfIssue)
-                    .HasColumnType("datetime")
-                    .HasColumnName("dateOfIssue");
+            entity.Property(e => e.DateOfIssue)
+                .HasColumnType("datetime")
+                .HasColumnName("dateOfIssue");
 
-                entity.Property(e => e.DateOfReturn)
-                    .HasColumnType("datetime")
-                    .HasColumnName("dateOfReturn");
+            entity.Property(e => e.DateOfReturn)
+                .HasColumnType("datetime")
+                .HasColumnName("dateOfReturn");
 
-                entity.Property(e => e.ReaderNumberLibraryCard).HasColumnName("readerNumberLibraryCard");
+            entity.Property(e => e.ReaderNumberLibraryCard).HasColumnName("readerNumberLibraryCard");
 
-                entity.HasOne(d => d.Book)
-                    .WithMany(p => p.Bookissuances)
-                    .HasForeignKey(d => d.BookId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("bookIssuance_book");
+            entity.HasOne(d => d.Book)
+                .WithMany(p => p.Bookissuances)
+                .HasForeignKey(d => d.BookId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("bookIssuance_book");
 
-                entity.HasOne(d => d.Reader)
-                    .WithMany(p => p.Bookissuances)
-                    .HasForeignKey(d => d.ReaderNumberLibraryCard)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("bookIssuance_reader");
-            });
+            entity.HasOne(d => d.Reader)
+                .WithMany(p => p.Bookissuances)
+                .HasForeignKey(d => d.ReaderNumberLibraryCard)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("bookIssuance_reader");
+        });
 
             modelBuilder.Entity<Genre>(entity =>
             {

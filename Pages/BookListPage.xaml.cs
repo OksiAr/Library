@@ -46,7 +46,7 @@ namespace Library.Pages
             {
                 MessageBox.Show("Возникла ошибка!");
             }
-           
+
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -77,11 +77,45 @@ namespace Library.Pages
                 var selBook = BookList.SelectedItem as Book;
                 if (selBook != null)
                 {
-                    //откравать окно с кнопка да, нет, если выбрано да, удалить книгу
-                    MessageBoxResult result = MessageBox.Show($"Вы действительно хотите удалить книгу \"{selBook.Name}\"", "Удаление книги", MessageBoxButton.YesNo);
+                    //откравать окно с кнопка да, нет
+                    MessageBoxResult result = MessageBox.Show($"Вы действительно хотите удалить одну копию книги \"{selBook.Name}\"?", "Удаление одной копии", MessageBoxButton.YesNo);
+                    if (selBook.CountCopies == 0 && App.db.Bookissuances.Any(x => x.BookId == selBook.Id))
+                    {
+                        MessageBox.Show("Удаление невозможно, данные копии на руках у читателей");
+                        return;
+                    }
+                    //если нажато да, выполнить перемещение одной копии в архив
                     if (result == MessageBoxResult.Yes)
                     {
-                        App.db.Books.Remove(selBook);
+                        //если в архиве есть уже такая книга, к количесву копий прибавляем 1
+                        var bookA = App.db.Bookarchives.FirstOrDefault(x => x.BookName == selBook.Name);
+                        if (bookA != null)
+                        {
+                            bookA.CountCopies += 1; //прибавляем 1
+                        }
+                        else
+                        { // иначе создаем новую книгу для архива и добавляем ее в таблицу архив
+                            Bookarchive bookarchive = new Bookarchive()
+                            {
+                                BookId = selBook.Id,
+                                BookName = selBook.Name,
+                                AuthorId = selBook.AuthorId,
+                                AuthorFullName = selBook.Author.FullName,
+                                GenreId = selBook.GenreId,
+                                GenreName = selBook.Genre.Name,
+                                PublihingHouse = selBook.PublihingHouse,
+                                Year = selBook.Year,
+                                CountCopies = 1
+                            };
+
+                            App.db.Bookarchives.Add(bookarchive);
+                        }
+
+                        // если количесво копий !=0 отнимаем -1 иначе полностью удаляем книгу из базы в архив
+                        if (selBook.CountCopies != 0)
+                            selBook.CountCopies -= 1;
+                        else
+                            App.db.Books.Remove(selBook);
                         App.db.SaveChanges();
                         Refresh();
                     }
@@ -95,7 +129,7 @@ namespace Library.Pages
             {
                 MessageBox.Show("Возникла ошибка!");
             }
-           
+
         }
         //метод организующий выборку из списка( фильткацию и поиск)
         public void Refresh()
@@ -126,7 +160,7 @@ namespace Library.Pages
             {
                 MessageBox.Show("Возникла ошибка!");
             }
-           
+
 
         }
         private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)

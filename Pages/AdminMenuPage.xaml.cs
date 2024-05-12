@@ -50,7 +50,12 @@ namespace Library.Pages
         private void ArchiveBtn_Click(object sender, RoutedEventArgs e)
         {
             Navigation.NextPage(new PageComponent("Архив выданных книг", new BookIssuanceArchivePage()));
+        }
 
+        private void ArchiveBookBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Navigation.NextPage(new PageComponent("Архив книг", new BookArchivePage()));
+           
         }
     }
 }
