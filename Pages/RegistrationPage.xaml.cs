@@ -99,7 +99,7 @@ namespace Library.Pages
                         Address = AddressTb.Text,
                         Phone = PhoneTb.Text
                     });
-
+                    App.db.SaveChanges();
                     //добавление нового польхователя системы, к пользователю привязывается чичтатель
                     App.db.Users.Add(new User()
                     {
